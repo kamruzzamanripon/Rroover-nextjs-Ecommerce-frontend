@@ -6,9 +6,9 @@ import BrandLogo from "../../public/logo.png";
 const Logo = () => {
     return (
         <Link href="/">
-        <a className="flex text-xs sm:font-size-32 font-medium items-center">
-          <span className="hidden sm:block mr-2"><Image src={BrandLogo} /></span> 
-          <span className="text-2xl ml-5 sm:text-4xl" >Bengal Shop</span>
+        <a className="sm:flex text-xs text-center sm:font-size-32 font-medium items-center">
+          <span className="mr-2"><Image src={BrandLogo} /></span> 
+          <span className=" text-xl ml-5 sm:text-4xl " >Bengal Shop</span>
         </a>
       </Link>
     );

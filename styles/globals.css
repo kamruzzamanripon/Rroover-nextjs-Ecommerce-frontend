@@ -95,4 +95,31 @@
   .promo-bg-5 {
     background-image: url("../public/images/Promo-bg-5.png");
   }
+
+  .accordion__button {
+    background-color: #ebfaeb !important;
+  }
+
+  .accordion__button:before {
+    position: absolute !important;
+    right: 0 !important;
+  }
+
+  .accordion__button.sibling {
+    background-color: white !important;
+    box-shadow: 0 0 0px 0;
+    border: none !important;
+  }
+
+  .accordion__panel {
+    padding: 10px !important;
+  }
+
+  .accordion__item {
+    border: none !important;
+  }
+
+  .accordion {
+    border: none;
+  }
 }
