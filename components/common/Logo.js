@@ -7,7 +7,8 @@ const Logo = () => {
     return (
         <Link href="/">
         <a className="flex text-xs sm:font-size-32 font-medium items-center">
-          <Image src={BrandLogo} className="mr-3" /> <span>Bengal Shop</span>
+          <span className="hidden sm:block mr-2"><Image src={BrandLogo} /></span> 
+          <span className="text-2xl ml-5 sm:text-4xl" >Bengal Shop</span>
         </a>
       </Link>
     );

@@ -6,7 +6,7 @@ export default function Index(props) {
   //console.log("Index",props)
   return (
     <Layout title='Home Layout'>
-       <Home title='props' />
+       <Home />
     </Layout>
   )
 }

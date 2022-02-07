@@ -30,6 +30,14 @@
     font-size: 32px;
   }
 
+  .font-size-22 {
+    font-size: 22px;
+  }
+
+  .font-size-46 {
+    font-size: 46px;
+  }
+
   .bs-button-bg {
     background: color #4f4f4f;
   }
@@ -54,5 +62,37 @@
 
   .bs-dark-green-color {
     color: #26ae60;
+  }
+
+  .slider-bg {
+    background-color: #ebfaeb;
+  }
+
+  .bs-button {
+    @apply bs-dark-green-bg text-white rounded-full px-6 py-2;
+  }
+
+  .bs-white-btn {
+    @apply bg-white bs-dark-orange-color rounded-full px-6 py-2;
+  }
+
+  .promo-bg-1 {
+    background-image: url("../public/images/Promo-bg-1.png");
+  }
+
+  .promo-bg-2 {
+    background-image: url("../public/images/Promo-bg-2.png");
+  }
+
+  .promo-bg-3 {
+    background-image: url("../public/images/Promo-bg-3.png");
+  }
+
+  .promo-bg-4 {
+    background-image: url("../public/images/Promo-bg-4.png");
+  }
+
+  .promo-bg-5 {
+    background-image: url("../public/images/Promo-bg-5.png");
   }
 }
