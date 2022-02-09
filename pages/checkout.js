@@ -1,12 +1,12 @@
-import Cart from '../components/Cart'
+import CheckOut from '../components/CheckOut'
 import Layout from '../components/layout/Layout'
 
 
-export default function cart(props) {
+export default function checkout(props) {
   //console.log("Index",props)
   return (
     <Layout title='Home Layout'>
-       <Cart />
+       <CheckOut />
     </Layout>
   )
 }

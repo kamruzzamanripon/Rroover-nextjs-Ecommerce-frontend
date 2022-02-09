@@ -16,45 +16,25 @@ const Register = () => {
                             <label className="block mb-5">
                                 <span className="block text-sm font-medium text-slate-700">Username</span>
                             
-                                <input type="text" placeholder='username' className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                invalid:border-pink-500 invalid:text-pink-600
-                                focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-                                "/>
+                                <input type="text" placeholder='username' className="input-box"/>
                             </label>
 
                             <label className="block mb-5">
                                 <span className="block text-sm font-medium text-slate-700">Email</span>
                             
-                                <input type="text" placeholder='email' className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                invalid:border-pink-500 invalid:text-pink-600
-                                focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-                                "/>
+                                <input type="text" placeholder='email' className="input-box"/>
                             </label>
 
                             <label className="block mb-5">
                                 <span className="block text-sm font-medium text-slate-700">password</span>
                             
-                                <input type="password" placeholder='password'  className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                invalid:border-pink-500 invalid:text-pink-600
-                                focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-                                "/>
+                                <input type="password" placeholder='password'  className="input-box"/>
                             </label>
 
                             <label className="block mb-5">
                                 <span className="block text-sm font-medium text-slate-700">Confiramation password</span>
                             
-                                <input type="password" placeholder='Confiramation password'  className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                invalid:border-pink-500 invalid:text-pink-600
-                                focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-                                "/>
+                                <input type="password" placeholder='Confiramation password'  className="input-box"/>
                             </label>
 
                             <label className="block mb-5 text-center mt-10 ">

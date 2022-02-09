@@ -139,7 +139,7 @@ const Cart = () => {
               <a className="inline-block text-base font-semibold bg-blue-800 text-white active:bg-black px-5 py-2 rounded-lg mr-1 sm:mr-5">Continue to Shopping</a>
             </Link>
 
-            <Link href="/" >
+            <Link href="/checkout" >
               <a className="inline-block text-base font-semibold bg-green-700 text-white active:bg-black px-5 py-2 rounded-lg">Processed to Checkout</a>
             </Link>
      </div>

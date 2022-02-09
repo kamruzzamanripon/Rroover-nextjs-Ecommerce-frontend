@@ -15,7 +15,7 @@ const Layout = ({children, title="Ecommerce"}) => {
       </Head>
 
         <Header />
-        {children}
+          {children}
         <Footer />
 
     </Fragment>

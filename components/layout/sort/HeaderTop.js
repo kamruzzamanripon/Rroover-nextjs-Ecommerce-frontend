@@ -3,8 +3,6 @@ import Link from "next/link";
 import React from 'react';
 import Heart from "../../../public/images/heart.png";
 import Search from "../../../public/images/search.png";
-//Images
-import UserPic from "../../../public/images/user.png";
 import ShoppingBag from "../../../public/images/u_shopping-bag.png";
 import Logo from "../../common/Logo";
 
@@ -48,12 +46,27 @@ const HeaderTop = () => {
               </span>
             </a>
           </Link>
-          <Link href="/">
+          
+          {/* if loging true then show this component */}
+          {/* <Link href="/">
             <a className="flex items-center">
               <span className="bs-icon-box rounded-full hover:bg-gray-200 inline-block flex items-center justify-center">
                 <Image src={UserPic} alt="" />
               </span>
               <span>Account</span>
+            </a>
+          </Link> */}
+
+
+          <Link href="/login">
+            <a className="flex items-center">
+              <span>Login</span>
+            </a>
+          </Link>
+          <span> / </span>
+          <Link href="/register">
+            <a className="flex items-center">
+              <span>Register</span>
             </a>
           </Link>
         </div>
