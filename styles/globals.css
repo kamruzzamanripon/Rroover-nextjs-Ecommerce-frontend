@@ -122,4 +122,12 @@
   .accordion {
     border: none;
   }
+
+  .panel-body {
+    border-radius: 10px;
+  }
+
+  .modal-body {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }

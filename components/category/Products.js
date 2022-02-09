@@ -4,7 +4,7 @@ import { ArrowRightIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import React, { Fragment, useState } from 'react';
 import carouselOne from "../../public/images/product-1.png";
-import ModalComponent from './Modal';
+import ModalComponent from '../common/Modal';
 
 const Products = ({displayStyle}) => {
   const [modal, setModal] = useState(false);
@@ -18,7 +18,7 @@ const Products = ({displayStyle}) => {
                 
             {
                  Array(10).fill().map((_,index)=>(
-                    <div className='mb-14 sm:mb-5'>
+                    <div className='mb-14 sm:mb-5' key={index}>
                     <div className="category-carousel mb-16 text-center mr-5 group">
                       <div className='single-bs-product'>
                         
@@ -77,11 +77,12 @@ const Products = ({displayStyle}) => {
                         
                       </div>
                     </div>
-                    <ModalComponent modal={modal} setModal={setModal} />
+                    
                   </div>
                   
                  ))
             }
+            <ModalComponent modal={modal} setModal={setModal} />
             </div>
             
         </div>

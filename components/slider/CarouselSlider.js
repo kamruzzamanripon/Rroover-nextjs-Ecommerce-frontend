@@ -1,13 +1,10 @@
+/* eslint-disable react/jsx-key */
 import Image from "next/image";
 import React, { Fragment } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import carouselOne from "../../public/images/002-fashion-1.png";
-import carouselTwo from "../../public/images/002-fashion-2.png";
-import carouselThree from "../../public/images/002-fashion-3.png";
-import carouselFour from "../../public/images/002-fashion-4.png";
-import carouselFive from "../../public/images/002-fashion-5.png";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -85,68 +82,19 @@ const CarouselSlider = ({backgroundColorClass}) => {
   return (
     <Fragment>
       <Slider {...settings}>
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselOne} width="85px" height="85px" />
+        
+        {Array(10)
+          .fill()
+          .map((_, index) => (
+            <div key={index}>
+              <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`} >
+                <div className="h-32 flex justify-center items-center">
+                  <Image src={carouselOne} width="85px" height="85px" />
+                </div>
+                <h4 className="text-xl">Groceries</h4>
+              </div>
             </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
-
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselTwo} width="85px" height="85px" />
-            </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
-
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselThree} width="85px" height="85px" />
-            </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
-
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselFour} width="85px" height="85px" />
-            </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
-
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselFive} width="85px" height="85px" />
-            </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
-
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselTwo} width="85px" height="85px" />
-            </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
-
-        <div>
-        <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`}>
-            <div className="h-32 flex justify-center items-center">
-              <Image src={carouselThree} width="85px" height="85px" />
-            </div>
-            <h4 className="text-xl">Groceries</h4>
-          </div>
-        </div>
+          ))}
 
       </Slider>
     </Fragment>

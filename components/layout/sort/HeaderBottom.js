@@ -38,16 +38,16 @@ const HeaderBottom = () => {
           >
             <ul>
               <li className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
-                <Link href="/">Fruits</Link>
+                <Link href="/category">Fruits</Link>
               </li>
               <li className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
-                <Link href="/">Vegetables</Link>
+                <Link href="/category">Vegetables</Link>
               </li>
               <li className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
-                <Link href="/">Lorem ispum caosel</Link>
+                <Link href="/category">Lorem ispum caosel</Link>
               </li>
               <li className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
-                <Link href="/">Lorem ispum caosel</Link>
+                <Link href="/category">Lorem ispum caosel</Link>
               </li>
               <li className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
                 <Link href="/">Lorem ispum caosel</Link>
