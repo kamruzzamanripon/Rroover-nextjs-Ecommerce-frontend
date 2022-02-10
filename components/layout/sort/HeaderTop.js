@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from 'react';
 import Heart from "../../../public/images/heart.png";
 import Search from "../../../public/images/search.png";
-import ShoppingBag from "../../../public/images/u_shopping-bag.png";
 import Logo from "../../common/Logo";
 
 const HeaderTop = () => {
@@ -38,14 +37,7 @@ const HeaderTop = () => {
               <Image src={Heart} alt="" />
             </a>
           </Link>
-          <Link href="/">
-            <a className="relative bs-icon-box rounded-full hover:bg-gray-200 inline-block flex items-center justify-center">
-              <Image src={ShoppingBag} alt="" />
-              <span className="absolute bg-red-600 w-4 h-4 top-0 right-0 rounded-full text-xs flex justify-center items-center text-white">
-                0
-              </span>
-            </a>
-          </Link>
+          
           
           {/* if loging true then show this component */}
           {/* <Link href="/">

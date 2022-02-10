@@ -2,20 +2,23 @@
 import { ChevronDownIcon, ChevronUpIcon, ShoppingBagIcon, XCircleIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import sampleImage from '../public/images/product-2.png';
+import { selectTotal } from '../store_slices/cartSlice';
 
 const MiniCart = () => {
     const [bigCart, setBigCart] = useState(false);
+    const Total = useSelector(selectTotal)
     return (
         <div>
-            <div className='absolute right-0 top-2/4 z-50' onClick={()=>setBigCart(true)}>
+            <div className='fixed  right-0 top-2/4 z-50' onClick={()=>setBigCart(true)}>
                 <div className='bg-slate-600 w-20 h-20 text-center cursor-pointer'>
                     <ShoppingBagIcon className='h-12 text-white ml-4' />
-                    <p className='text-white border-t pt-1'>$ 200</p>
+                    <p className='text-white border-t pt-1'>$ {Total}</p>
                 </div>
             </div>
 
-            <div className={`${bigCart ? "flex" : 'hidden'} absolute right-0  top-0 z-50 p-2 bg-gray-600 min-h-screen`}>
+            <div className={`${bigCart ? "flex" : 'hidden'} fixed  right-0  top-0 z-50 p-2 bg-gray-600 min-h-screen`}>
                 <div className='w-96 text-center border-2 bg-white '>
                     
                     <div className='py-1 border-b-2 flex justify-between px-1'>

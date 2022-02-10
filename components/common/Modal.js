@@ -2,6 +2,7 @@
 import { HeartIcon, ShareIcon, SwitchHorizontalIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import { useState } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
 import SmallImageOne from '../../public/images/1.png';
@@ -14,7 +15,7 @@ import ModalMainImage from '../../public/images/product-2.png';
 
 
 const ModalComponent = ({modal, setModal}) => {
-    //const [modal, setModal] = useState(false);
+    const [defaultImage, setdefaultImage] = useState(ModalMainImage);
 
 
     function toggleModal(e) {
@@ -36,14 +37,15 @@ const ModalComponent = ({modal, setModal}) => {
             <div className='absolute right-0'> <span onClick={() => setModal(false)}></span> </div>
             <div className='w-1/2'>
                 <div>
-                    <Image src={ModalMainImage} className='rounded-xl' />
+                    <Image src={defaultImage} className='rounded-xl' width={500} height={500}/>
                 </div>
                 <div className='flex items-center'>
-                    <Image src={SmallImageOne} />
-                    <Image src={SmallImageTwo} />
-                    <Image src={SmallImageThree} />
-                    <Image src={SmallImageFour} />
-                    <Image src={SmallImageFive} />
+                    <Image width={100} height={100} src={ModalMainImage} onClick={()=>setdefaultImage(ModalMainImage)}/>
+                    <Image width={100} height={100} src={SmallImageOne} onClick={()=>setdefaultImage(SmallImageOne)}/>
+                    <Image width={100} height={100} src={SmallImageTwo} onClick={()=>setdefaultImage(SmallImageTwo)}/>
+                    <Image width={100} height={100} src={SmallImageThree} onClick={()=>setdefaultImage(SmallImageThree)} />
+                    <Image width={100} height={100} src={SmallImageFour} onClick={()=>setdefaultImage(SmallImageFour)}/>
+                    <Image width={100} height={100} src={SmallImageFive} onClick={()=>setdefaultImage(SmallImageFive)}/>
                 </div>
             </div>
 
@@ -82,7 +84,7 @@ const ModalComponent = ({modal, setModal}) => {
 
                 <div>
                   <button className='w-full h-12 bs-dark-green-bg text-white rounded-3xl mb-3'>Add To Cart</button>
-                  <button className='w-full h-12 bg-gray-300 text-black rounded-3xl'>Add To Cart</button>
+                  <button className='w-full h-12 bg-gray-300 text-black rounded-3xl'>Buy Now</button>
                 </div>
 
                 <div className='flex justify-between text-xs my-3 mx-2'>

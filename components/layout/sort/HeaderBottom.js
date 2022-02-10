@@ -89,15 +89,18 @@ const HeaderBottom = () => {
               <Link href="/">FAQs</Link>
             </li>
             <li className="p-4">
-              <Link href="/">Offers</Link>
+              <Link href="/category">Offers</Link>
             </li>
           </ul>
         </div>
 
-        <div className="min-w-max bs-dark-orange-color">
-          <Image src={u_percentage} />{" "}
-          <span className="mr-3">Special Offers!</span>
-        </div>
+        <Link href="/category">
+          <div className="min-w-max bs-dark-orange-color flex items-center cursor-pointer">
+            <Image src={u_percentage} />{" "}
+            <span className="mr-3">Special Offers!</span>
+          </div>
+        </Link>    
+        
       </div>
     </div>
   );
