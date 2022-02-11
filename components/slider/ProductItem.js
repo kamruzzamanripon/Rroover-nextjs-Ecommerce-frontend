@@ -1,19 +1,17 @@
 import { ArrowRightIcon } from '@heroicons/react/solid';
 import Image from "next/image";
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import useCartHook from '../../Hook/useCartHook';
 import carouselOne from "../../public/images/product-1.png";
-import { addToCart, decrementQuantity, incrementQuantity, selectItems } from '../../store_slices/cartSlice';
 
 
-const ProductItem = ({setModal,id}) => {
+const ProductItem = ({setModal,id, setModalProductInfo}) => {
 
-    const dispatch = useDispatch();
-    const cartItems = useSelector(selectItems)
-    console.log(cartItems )
-    const addItemToCart = ()=>{
+    const {addItemToCart, increaseProduct, decrementProduct, cartQuantity } = useCartHook(id);
+    
+    const addItem = ()=>{
         const productInfo ={
             id: id,
             title: "Product Name",
@@ -22,16 +20,28 @@ const ProductItem = ({setModal,id}) => {
             image:carouselOne
         }
 
-        dispatch(addToCart(productInfo))
+        addItemToCart(productInfo)
     }
 
-    const increaseProduct = ()=>{
-        dispatch(incrementQuantity(id))
-        }
+    const increment = ()=>{
+      increaseProduct(id)
+      }
 
-    const decrementProduct = ()=>{
-        dispatch(decrementQuantity(id))
-      }  
+    const decrement = ()=>{
+       decrementProduct(id)
+     }  
+
+    const viewModal = ()=>{
+      const productInfo ={
+        id: id,
+        title: "Product Name",
+        price: "300",
+        detail:"lorem",
+        image:carouselOne
+    }
+      setModal(true)
+      setModalProductInfo(productInfo)
+    } 
 
     return (
         <div>
@@ -56,7 +66,7 @@ const ProductItem = ({setModal,id}) => {
                     
                       <a 
                         className="absolute left-0 bottom-0 bg-gray-200 p-2 w-full flex items-center justify-center cursor-pointer"
-                        onClick={() => setModal(true)}
+                        onClick={viewModal}
                       >
                         Details
                         <ArrowRightIcon className="h-5 ml-3 transition group-first:hover:ml-5" />
@@ -65,14 +75,14 @@ const ProductItem = ({setModal,id}) => {
 
                     <div className="relative z-10">
                       <div className="flex justify-center items-center text-4xl text-white mb-8">
-                        <button className="h-12 w-12 border border-white rounded-full" onClick={decrementProduct}> - </button>
-                        <span className="px-6"> 0 </span>
-                        <button className="h-12 w-12 border border-white rounded-full" onClick={increaseProduct}> + </button>
-                      </div>
+                        <button className={`${cartQuantity && cartQuantity !== 0 ? "" : "hidden"} h-12 w-12 border border-white rounded-full`} onClick={decrement}> - </button>
+                        <span className="px-6"> {cartQuantity} </span>
+                        <button className={`${cartQuantity && cartQuantity !== 0 ? "" : "hidden"} h-12 w-12 border border-white rounded-full`} onClick={increment}> + </button>
+                    </div>
 
                       <button 
                         className="bs-dark-green-bg text-white px-8 py-2 rounded-full inline-block"
-                        onClick={addItemToCart}
+                        onClick={addItem}
                       >
                         Add to card
                       </button>

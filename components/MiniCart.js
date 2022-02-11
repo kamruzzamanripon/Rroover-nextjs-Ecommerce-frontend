@@ -2,13 +2,25 @@
 import { ChevronDownIcon, ChevronUpIcon, ShoppingBagIcon, XCircleIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import sampleImage from '../public/images/product-2.png';
-import { selectTotal } from '../store_slices/cartSlice';
+import useCartHook from '../Hook/useCartHook';
 
 const MiniCart = () => {
     const [bigCart, setBigCart] = useState(false);
-    const Total = useSelector(selectTotal)
+   
+    const {increaseProduct,decrementProduct, deleteProduct, Total,  cartItems} = useCartHook()
+
+    const incresement = (id) => {
+        increaseProduct(id);
+    };
+    
+    const decrement = (id) => {
+        decrementProduct(id);
+    };
+
+    const deleteP = (id)=>{
+        deleteProduct(id);
+    }  
+
     return (
         <div>
             <div className='fixed  right-0 top-2/4 z-50' onClick={()=>setBigCart(true)}>
@@ -29,32 +41,31 @@ const MiniCart = () => {
                     <div className='cart-item-hight overflow-auto'>
                         <ul>
                             {
-                                Array(15)
-                                .fill()
-                                .map((_,index)=>(
-                                    <li className='border-b'>
-                                        <div className='flex items-center'>
+                                cartItems
+                                .map((item,index)=>(
+                                    <li className='border-b' key={index}>
+                                        <div className='flex items-center justify-between'>
                                             <div>
-                                                <ChevronUpIcon  className='h-8 cursor-pointer' />
-                                                <span>5</span>
-                                                <ChevronDownIcon className='h-8 cursor-pointer' />
+                                                <ChevronUpIcon  className='h-8 cursor-pointer'  onClick={()=>incresement(item.id)} />
+                                                <span>{item.quantity}</span>
+                                                <ChevronDownIcon className='h-8 cursor-pointer' onClick={()=>decrement(item.id)} />
                                             </div>
 
                                             <div className='ml-2'>
-                                                <Image src={sampleImage} width="65" height="65"/>
+                                                <Image src={item ? item.image : ""} width="65" height="65"/>
                                             </div>
 
                                             <div className='text-left ml-2'>
-                                                <p className='text-sm'>product Sample Name</p>
-                                                <p className='text-sm'>Other informatino</p>
+                                                <p className='text-sm'>{item.title}</p>
+                                                <p className='text-sm'>{item.detail}</p>
                                             </div>
 
                                             <div className='text-center ml-3'>
-                                                $ 250
+                                                $ {item.price*item.quantity}
                                             </div>
 
                                             <div className='ml-4'>
-                                                <XCircleIcon className='h-6 text-gray-500 cursor-pointer' />
+                                                <XCircleIcon className='h-6 text-gray-500 cursor-pointer' onClick={()=>deleteP(item.id)}/>
                                             </div>
 
                                         </div>
@@ -71,7 +82,7 @@ const MiniCart = () => {
                         <div className='flex items-center'>
                             <button className='bg-white text-center w-full'>
                                 <span className='bg-pink-600 p-2 text-white text-lg inline-block w-2/3'>Place Order</span>
-                                <span className='bg-pink-800 p-2 text-white text-lg inline-block w-1/3'>$ 250</span>
+                                <span className='bg-pink-800 p-2 text-white text-lg inline-block w-1/3'>$ {Total}</span>
                             </button>
                         </div>
                     </div>

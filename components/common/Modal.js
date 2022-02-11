@@ -2,9 +2,10 @@
 import { HeartIcon, ShareIcon, SwitchHorizontalIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
+import useCartHook from '../../Hook/useCartHook';
 import SmallImageOne from '../../public/images/1.png';
 import SmallImageTwo from '../../public/images/2.png';
 import SmallImageThree from '../../public/images/3.png';
@@ -14,13 +15,35 @@ import ModalMainImage from '../../public/images/product-2.png';
 
 
 
-const ModalComponent = ({modal, setModal}) => {
+const ModalComponent = ({modal, setModal, modalProductInfo}) => {
     const [defaultImage, setdefaultImage] = useState(ModalMainImage);
+    const [productId, setProductId] = useState( modalProductInfo ? modalProductInfo.id : "")
+    const {cartQuantity, addItemToCart, increaseProduct, decrementProduct} = useCartHook(productId);
+  
 
+
+    console.log("modla qunatity", cartQuantity, productId)
+    
+    const addProduct = ()=>{
+      addItemToCart(modalProductInfo)
+    }
+
+    const incriment = ()=>{
+      increaseProduct(productId)
+    }
+
+    const dicrement = ()=>{
+      decrementProduct(productId)
+    }
 
     function toggleModal(e) {
       setIsOpen(!isOpen)
     }
+
+    useEffect(()=>{
+      setProductId( modalProductInfo ? modalProductInfo.id : "")
+          
+    })
 
     return (
         <>
@@ -53,7 +76,7 @@ const ModalComponent = ({modal, setModal}) => {
                 
                 <div>
                     <span className='text-xs text-gray-400 mr-5'>STATUS</span> <span className='text-xs bs-dark-green-color font-medium'>In Stock</span>
-                    <h2 className='mt-3 text-gray-900 font-medium'>Product Full Name</h2>
+                    <h2 className='mt-3 text-gray-900 font-medium'>{modalProductInfo?.title}</h2>
                     <div className='flex items-center'>
                         {Array(5).fill().map((_, i)=>(
                             <StarIcon className='h-4 text-orange-300' />
@@ -66,7 +89,7 @@ const ModalComponent = ({modal, setModal}) => {
                     <span className="font-bold text-xl mr-3">
                         $200.00
                     </span>
-                    <del className="text-gray-400 mr-3">$300</del> <span className='text-xs text-gray-400'>(+15% vat included)</span>
+                    <del className="text-gray-400 mr-3">$ {modalProductInfo?.price}</del> <span className='text-xs text-gray-400'>(+15% vat included)</span>
                     <p className='text-sm mt-2'>20 Products sold in last 12 hours</p>
                 </div>
                 
@@ -75,15 +98,15 @@ const ModalComponent = ({modal, setModal}) => {
                 <div className='my-2'>
                     <div className="flex items-center text-4xl mb-5 justify-center">
                         <span className='text-xs mr-1'>QUANTITY</span> 
-                        <button className="h-10 w-10 border border-gray-900 rounded-full ml-2"> - </button>
-                        <span className="h-10 w-10 border rounded-full bg-gray-300 mx-2 text-center text-2xl font-medium leading-9"> 1 </span>
-                        <button className="h-10 w-10 border border-gray-900 rounded-full mr-2"> + </button> 
+                        <button className={`${cartQuantity && cartQuantity !== 0 ? "" : "hidden"} h-10 w-10 border border-gray-900 rounded-full ml-2`} onClick={dicrement}> - </button>
+                        <span className="h-10 w-10 border rounded-full bg-gray-300 mx-2 text-center text-2xl font-medium leading-9"> {cartQuantity} </span>
+                        <button className={`${cartQuantity && cartQuantity !== 0 ? "" : "hidden"} h-10 w-10 border border-gray-900 rounded-full mr-2`} onClick={incriment}> + </button> 
                         <span className='text-xs text-gray-400'>Only 10 items left</span>
                     </div>
                 </div>
 
                 <div>
-                  <button className='w-full h-12 bs-dark-green-bg text-white rounded-3xl mb-3'>Add To Cart</button>
+                  <button className='w-full h-12 bs-dark-green-bg text-white rounded-3xl mb-3' onClick={addProduct} >Add To Cart</button>
                   <button className='w-full h-12 bg-gray-300 text-black rounded-3xl'>Buy Now</button>
                 </div>
 

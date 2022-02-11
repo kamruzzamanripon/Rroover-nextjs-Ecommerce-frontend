@@ -32,7 +32,7 @@ const HeaderTop = () => {
         </div>
 
         <div className="min-w-max flex items-center">
-          <Link href="/">
+          <Link href="/wishlist">
             <a className="bs-icon-box rounded-full hover:bg-gray-200 inline-block flex items-center justify-center">
               <Image src={Heart} alt="" />
             </a>

@@ -80,7 +80,8 @@ const ProductViewCarouselSlider = () => {
   };
 
   const [modal, setModal] = useState(false);
-  
+  const [modalProductInfo, setModalProductInfo] = useState();
+  //console.log("modal product id", modalProductInfo)
   
   return (
     <Fragment>
@@ -89,18 +90,20 @@ const ProductViewCarouselSlider = () => {
         
         {Array(10).fill().map((_, index)=>(
           
-          <ProductItem 
-            key={index} 
-            setModal={setModal}
-            id={index}
-          />
+            <Fragment key={index}>
+              <ProductItem 
+              setModal={setModal}
+              setModalProductInfo={setModalProductInfo}
+              id={index}
+            />
+          </Fragment>
           
-        ))}
+          ))}
         
       </Slider>
       
-      <ModalComponent modal={modal} setModal={setModal} />
-
+          <ModalComponent modal={modal} setModal={setModal} modalProductInfo={modalProductInfo} />
+    
     </Fragment>
   );
 };

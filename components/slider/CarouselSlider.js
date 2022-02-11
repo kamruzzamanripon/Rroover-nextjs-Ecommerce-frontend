@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import Image from "next/image";
+import Link from "next/link";
 import React, { Fragment } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -86,14 +87,14 @@ const CarouselSlider = ({backgroundColorClass}) => {
         {Array(10)
           .fill()
           .map((_, index) => (
-            <div key={index}>
-              <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5`} >
+            <Link href="/category" key={index}>
+              <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5 cursor-pointer`} >
                 <div className="h-32 flex justify-center items-center">
                   <Image src={carouselOne} width="85px" height="85px" />
                 </div>
                 <h4 className="text-xl">Groceries</h4>
               </div>
-            </div>
+            </Link>
           ))}
 
       </Slider>
