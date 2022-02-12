@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
-import useCartHook from '../../Hook/useCartHook';
+import useCartHook from '../../hook/useCartHook';
 import SmallImageOne from '../../public/images/1.png';
 import SmallImageTwo from '../../public/images/2.png';
 import SmallImageThree from '../../public/images/3.png';

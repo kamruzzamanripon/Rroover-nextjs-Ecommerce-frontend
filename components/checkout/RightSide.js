@@ -3,8 +3,15 @@ import { XCircleIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import React from "react";
 import sampleImage from "../../public/images/product-2.png";
+import useCartHook from '../../hook/useCartHook';
 
 const RightSide = () => {
+  const {increaseProduct,decrementProduct, deleteProduct, Total,  cartItems} = useCartHook();
+
+  const deleteP = (id)=>{
+    deleteProduct(id);
+  } 
+
   return (
     <div className="md:w-1/3 p-2 md:p-0 md:ml-5">
       <div className="w-full">
@@ -12,30 +19,31 @@ const RightSide = () => {
           Cart short Information
         </p>
         <ul>
-          {Array(5)
-            .fill()
-            .map((_, index) => (
-              <li className="border p-2 relative mb-1">
+          {
+            cartItems
+            .map((item, index) => (
+              <li className="border p-2 relative mb-1" key={index}>
                 <XCircleIcon className="h-5 absolute right-1 top-1 cursor-pointer text-gray-400" />
                 <div className="flex">
                   <div className="flex-shrink-0 w-12 h-12 mr-2">
                     <Image
-                      src={sampleImage}
+                      src={item ? item.image : ""}
                       className="w-full h-full rounded-sm"
                     />
                   </div>
                   <div className="text-gray-900 whitespace-no-wrap text-sm">
-                    <p>Product Sample Name</p>
-                    <p>Quentity - 5</p>
-                    <p>$ 250</p>
+                    <p>{item.title}</p>
+                    <p>Quentity - {item.quantity} x {item.price}</p>
+                    <p>$ {item.price*item.quantity}</p>
                   </div>
                 </div>
               </li>
             ))}
 
+
           <li className="border-double border-4 border-green-600 p-2 flex justify-between">
             <p className="font-bold text-lg">Total</p>
-            <p className="font-bold text-lg">$ 1000</p>
+            <p className="font-bold text-lg">$ {Total}</p>
           </li>
         </ul>
 

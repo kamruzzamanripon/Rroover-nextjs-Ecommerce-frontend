@@ -1,10 +1,25 @@
+/* eslint-disable react/jsx-key */
 import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import sampleImage from "../public/images/product-2.png";
+import useCartHook from '../hook/useCartHook';
 
 const Cart = () => {
+  const {increaseProduct,decrementProduct, deleteProduct, Total,  cartItems} = useCartHook();
+
+  const incresement = (id) => {
+    increaseProduct(id);
+};
+
+const decrement = (id) => {
+    decrementProduct(id);
+};
+
+const deleteP = (id)=>{
+    deleteProduct(id);
+}  
+  
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-3">
@@ -37,52 +52,62 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
-                    <span className="bg-green-700 inline-block w-3 h-6 text-center text-white rounded-sm hover:text-red-600 cursor-pointer mr-2">
-                      X
-                    </span>
-                    01
-                  </td>
+                
+              {
+                  cartItems
+                  .map((item,index)=>(
 
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
-                    <div className="flex">
-                      <div className="flex-shrink-0 w-10 h-10">
-                        <Image
-                          src={sampleImage}
-                          className="w-full h-full rounded-sm"
-                        />
-                      </div>
-                    </div>
-                  </td>
+                        <tr>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
+                          <span 
+                            className="bg-green-700 inline-block w-3 h-6 text-center text-white rounded-sm hover:text-red-600 cursor-pointer mr-2" 
+                            onClick={()=>deleteP(item.id)}
+                          >
+                            X
+                          </span>
+                          01
+                        </td>
+      
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
+                          <div className="flex">
+                            <div className="flex-shrink-0 w-10 h-10">
+                              <Image src={item ? item.image : ""} width="100" height="100"/>
+                            </div>
+                          </div>
+                        </td>
+      
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {item.title}
+                          </p>
+                          <p className="text-gray-600 whitespace-no-wrap">
+                            Other information
+                          </p>
+                        </td>
+      
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
+                          <p className="text-gray-900 whitespace-no-wrap">$ {item.price}</p>
+                        </td>
+      
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
+                          <div className="flex items-center">
+                            <PlusIcon className="h-6 cursor-pointer" onClick={()=>incresement(item.id)}/>
+                            <p className="text-gray-900 whitespace-no-wrap mx-2" >
+                            {item.quantity}
+                            </p>
+                            <MinusIcon className="h-6 cursor-pointer" onClick={()=>decrement(item.id)} />
+                          </div>
+                        </td>
+      
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
+                          <p className="text-gray-900 whitespace-no-wrap">$ {item.price*item.quantity}</p>
+                        </td>
+                      </tr>
+                    ))
+               }
+                
 
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
-                    <p className="text-gray-900 whitespace-no-wrap">
-                      Product Sample Name
-                    </p>
-                    <p className="text-gray-600 whitespace-no-wrap">
-                      Other information
-                    </p>
-                  </td>
 
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
-                    <p className="text-gray-900 whitespace-no-wrap">$ 250</p>
-                  </td>
-
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
-                    <div className="flex items-center">
-                      <PlusIcon className="h-6 cursor-pointer" />
-                      <p className="text-gray-900 whitespace-no-wrap mx-2">
-                        04
-                      </p>
-                      <MinusIcon className="h-6 cursor-pointer" />
-                    </div>
-                  </td>
-
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
-                    <p className="text-gray-900 whitespace-no-wrap">$ 1000</p>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -116,7 +141,7 @@ const Cart = () => {
                 </tr>
                 <tr>
                     <th className="text-left">Subtotal</th>
-                    <td className="text-right">$ 1,00</td>
+                    <td className="text-right">$ {Total}</td>
                 </tr>
                 <tr>
                     <th className="text-left">Shipping Charge</th>
@@ -128,7 +153,7 @@ const Cart = () => {
                 </tr>
                 <tr>
                     <th className="text-left">Total</th>
-                    <td className="text-right">$ 1,000</td>
+                    <td className="text-right">$ {Total}</td>
                 </tr>
             </table>
         </div>

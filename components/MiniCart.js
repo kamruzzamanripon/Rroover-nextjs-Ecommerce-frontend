@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-key */
 import { ChevronDownIcon, ChevronUpIcon, ShoppingBagIcon, XCircleIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
-import useCartHook from '../Hook/useCartHook';
+import useCartHook from '../hook/useCartHook';
 
 const MiniCart = () => {
     const [bigCart, setBigCart] = useState(false);
@@ -81,7 +82,7 @@ const MiniCart = () => {
                     <div className=''>
                         <div className='flex items-center'>
                             <button className='bg-white text-center w-full'>
-                                <span className='bg-pink-600 p-2 text-white text-lg inline-block w-2/3'>Place Order</span>
+                                <Link href="/cart"><span className='bg-pink-600 p-2 text-white text-lg inline-block w-2/3'>Place Order</span></Link>
                                 <span className='bg-pink-800 p-2 text-white text-lg inline-block w-1/3'>$ {Total}</span>
                             </button>
                         </div>
