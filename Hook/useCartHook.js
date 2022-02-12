@@ -47,8 +47,8 @@ const useCartHook = (id) => {
         
     });
 
-    const itemidex = cartItems.findIndex((item) => item.id === id);
-    if(itemidex < 0){
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
+    if(itemIndex < 0){
       setCartQuantity(0);
     }
    
