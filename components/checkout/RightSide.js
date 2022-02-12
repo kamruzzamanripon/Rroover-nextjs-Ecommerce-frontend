@@ -2,7 +2,6 @@
 import { XCircleIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import React from "react";
-import sampleImage from "../../public/images/product-2.png";
 import useCartHook from '../../hook/useCartHook';
 
 const RightSide = () => {
@@ -23,7 +22,7 @@ const RightSide = () => {
             cartItems
             .map((item, index) => (
               <li className="border p-2 relative mb-1" key={index}>
-                <XCircleIcon className="h-5 absolute right-1 top-1 cursor-pointer text-gray-400" />
+                <XCircleIcon className="h-5 absolute right-1 top-1 cursor-pointer text-gray-400" onClick={()=>deleteP(item.id)}/>
                 <div className="flex">
                   <div className="flex-shrink-0 w-12 h-12 mr-2">
                     <Image
