@@ -10,6 +10,8 @@ import carouselOne from "../../public/images/product-1.png";
 const ProductItem = ({setModal,id, setModalProductInfo}) => {
 
     const {addItemToCart, increaseProduct, decrementProduct, cartQuantity } = useCartHook(id);
+
+    console.log("home page", cartQuantity)
     
     const addItem = ()=>{
         const productInfo ={

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    addToCart,
-    decrementQuantity,
-    incrementQuantity, removeFromCart, selectItems,
-    selectTotal
+  addToCart,
+  decrementQuantity,
+  incrementQuantity, removeFromCart, selectItems,
+  selectTotal
 } from "../store_slices/cartSlice";
 
 const useCartHook = (id) => {
@@ -13,7 +13,7 @@ const useCartHook = (id) => {
   const [cartQuantity, setCartQuantity] = useState(0);
   const cartItems = useSelector(selectItems);
   const Total = useSelector(selectTotal);
-  //console.log("state cart",id )
+  console.log("cart hook",cartQuantity )
   //console.log(cartItems )
 
   const addItemToCart = (productInfo) => {
@@ -27,10 +27,14 @@ const useCartHook = (id) => {
   const decrementProduct = (id) => {
     setCartQuantity(cartQuantity - 1);
     dispatch(decrementQuantity(id));
+    
   };
 
   const deleteProduct = (id)=>{
+  
+    setCartQuantity(0);    
     dispatch(removeFromCart(id));
+    console.log('Delete cart hook', cartQuantity)
 }
 
 
@@ -40,16 +44,14 @@ const useCartHook = (id) => {
       if (id === item.id) {
         setCartQuantity(item.quantity);
       }
-   
+        
     });
 
-    // cartItems.map((item, index) => {
-    //   if (id !== item.id) {
-    //     setCartQuantity(0);
-    //   }
-    // },[cartItems]);
+    const itemidex = cartItems.findIndex((item) => item.id === id);
+    if(itemidex < 0){
+      setCartQuantity(0);
+    }
    
-    
   },[cartItems, id]);
 
     return {

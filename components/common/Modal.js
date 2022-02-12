@@ -22,7 +22,7 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
   
 
 
-    console.log("modla qunatity", cartQuantity, productId)
+    //console.log("modla qunatity", cartQuantity, productId)
     
     const addProduct = ()=>{
       addItemToCart(modalProductInfo)
