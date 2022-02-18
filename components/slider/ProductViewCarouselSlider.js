@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React, { Fragment, useState } from "react";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -81,6 +82,7 @@ const ProductViewCarouselSlider = () => {
 
   const [modal, setModal] = useState(false);
   const [modalProductInfo, setModalProductInfo] = useState();
+  const {dealOfTheWeektems, dealOfTheWeekLoading} = useSelector((state)=>state.homePageItems.dealOfTheWeek)
   //console.log("modal product id", modalProductInfo)
   
   return (
@@ -88,17 +90,20 @@ const ProductViewCarouselSlider = () => {
       
       <Slider {...settings}>
         
-        {Array(10).fill().map((_, index)=>(
-          
-            <Fragment key={index}>
-              <ProductItem 
-              setModal={setModal}
-              setModalProductInfo={setModalProductInfo}
-              id={index}
-            />
-          </Fragment>
-          
-          ))}
+        { dealOfTheWeekLoading ? "Data Loading.." :
+          dealOfTheWeektems.map((item, index)=>(
+            
+              <Fragment key={index}>
+                <ProductItem 
+                setModal={setModal}
+                setModalProductInfo={setModalProductInfo}
+                productItemInfo={item}
+                id={index}
+              />
+            </Fragment>
+            
+            ))
+        }
         
       </Slider>
       
@@ -107,5 +112,8 @@ const ProductViewCarouselSlider = () => {
     </Fragment>
   );
 };
+
+
+
 
 export default ProductViewCarouselSlider;

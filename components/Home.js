@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import TitleWithBorderBandComponent from "./common/TitleWithBorderBandComponent";
@@ -8,9 +9,14 @@ import CarouselSlider from "./slider/CarouselSlider";
 import HeroSlider from "./slider/HeroSlider";
 import ProductViewCarouselSlider from "./slider/ProductViewCarouselSlider";
 
+
 const Home = () => {
   const title = "this is home Page";
+
+  const {categoryItems, categoryLoading} = useSelector((state)=>state.homePageItems.categories)
+  const {brandItems, brandLoading} = useSelector((state)=>state.homePageItems.brands)
   
+  //console.log("categoryData", brandItems)
   return (
     <Fragment>
       
@@ -22,7 +28,7 @@ const Home = () => {
 
         <div className="container my-10">
             <TitleWithBorderBandComponent title="Search By Category" />
-            <CarouselSlider backgroundColorClass="bg-gray-200" />
+            <CarouselSlider backgroundColorClass="bg-gray-200" dataArray={categoryItems} loading={categoryLoading} />
         </div>
 
         <div className="container">
@@ -39,7 +45,7 @@ const Home = () => {
 
         <div className="container my-10">
             <TitleWithBorderBandComponent title="Popular Brands" />
-            <CarouselSlider backgroundColorClass="" />
+            <CarouselSlider backgroundColorClass=""  dataArray={brandItems} loading={brandLoading}/>
         </div>
 
         <div className="container">
@@ -58,3 +64,8 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getServerSideProps(){
+   
+                            
+}

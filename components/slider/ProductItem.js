@@ -7,64 +7,66 @@ import useCartHook from '../../hook/useCartHook';
 import carouselOne from "../../public/images/product-1.png";
 
 
-const ProductItem = ({setModal,id, setModalProductInfo}) => {
+const ProductItem = ({setModal,id, setModalProductInfo, productItemInfo}) => {
+    const productItemId = productItemInfo.id
+    const {addItemToCart, increaseProduct, decrementProduct, cartQuantity } = useCartHook(productItemId);
+    const productImageParse = productItemInfo.image ? JSON.parse(productItemInfo?.image) : "";
+    const productImage = productImageParse[0];
 
-    const {addItemToCart, increaseProduct, decrementProduct, cartQuantity } = useCartHook(id);
-
-    console.log("home page", cartQuantity)
+    //console.log("home page", productInfo)
     
     const addItem = ()=>{
-        const productInfo ={
-            id: id,
-            title: "Product Name",
-            price: "300",
-            detail:"lorem",
-            image:carouselOne
+       
+      const productInfo ={
+          id: productItemId,
+          title: productItemInfo?.name,
+          price: productItemInfo?.actual_price,
+          detail:"lorem",
+          image:productImage
         }
 
+        //console.log("productInfo",productcartInfo)
         addItemToCart(productInfo)
     }
 
     const increment = ()=>{
-      increaseProduct(id)
+      increaseProduct(productItemId)
       }
 
     const decrement = ()=>{
-       decrementProduct(id)
+       decrementProduct(productItemId)
      }  
 
     const viewModal = ()=>{
-      const productInfo ={
-        id: id,
-        title: "Product Name",
-        price: "300",
-        detail:"lorem",
-        image:carouselOne
-    }
-      setModal(true)
-      setModalProductInfo(productInfo)
+     setModal(true)
+      setModalProductInfo(productItemInfo)
     } 
+
+    
+
+    //console.log("image", productImage)
 
     return (
         <div>
             <div className="category-carousel mb-16 text-center mr-5 group">
               <div className='single-bs-product'>
-                <div className="h-80 product-img group relative">
+                <div className="h-100 product-img group relative">
                   <div className="bg-gray-50 h-full flex justify-center items-center p-4 mb-6">
-                    <Image src={carouselOne} />
+                    <Image src={productImage ? productImage : carouselOne} width='318' height='381' objectFit='contain'/>
                   </div>
                   
-                  <h4 className="text-xl mb-3">Product Name</h4>
+                  <h4 className="text-xl mb-3">{productItemInfo?.name}</h4>
+                  <h4 className="text-xl mb-3">sdfs</h4>
                   <p>
                     <span className="font-medium bs-dark-orange-color">
-                      $200.00
-                    </span>
-                    <del className="text-gray-400">$300</del>
+                      ${productItemInfo?.actual_price}
+                    </span> &nbsp;
+                    <del className="text-gray-400">${productItemInfo?.discount_price}</del>
                   </p>
 
                   {/* Hover Component */}
                   <div className="product-img-hover absolute h-full w-full top-0 left-0 flex justify-center items-center hidden transition duration-20000 ease-in group-hover:flex">
-                    <div className="bg-black absolute h-full w-full opacity-60"></div>
+                    <div className="bg-black absolute h-full w-full opacity-90"></div>
                     
                       <a 
                         className="absolute left-0 bottom-0 bg-gray-200 p-2 w-full flex items-center justify-center cursor-pointer"

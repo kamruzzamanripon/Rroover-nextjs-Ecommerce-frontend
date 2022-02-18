@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-key */
 import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import { useDispatch } from 'react-redux';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import carouselOne from "../../public/images/002-fashion-1.png";
+
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -42,13 +44,13 @@ function SamplePrevArrow(props) {
   );
 }
 
-const CarouselSlider = ({backgroundColorClass}) => {
+const CarouselSlider = ({backgroundColorClass, dataArray, loading}) => {
   var settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll:6,
+    slidesToShow: 5,
+    slidesToScroll:5,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -80,22 +82,29 @@ const CarouselSlider = ({backgroundColorClass}) => {
     ],
   };
 
+  const dispatch = useDispatch()
+  
+
+  useEffect(()=>{
+    
+  },[dispatch])
+
   return (
     <Fragment>
       <Slider {...settings}>
         
-        {Array(10)
-          .fill()
-          .map((_, index) => (
+        {  loading ? "Data Loading" : 
+           dataArray?.map((item, index) => (
             <Link href="/category" key={index}>
-              <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5 cursor-pointer`} >
+              <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5 cursor-pointer text-center`} >
                 <div className="h-32 flex justify-center items-center">
-                  <Image src={carouselOne} width="85px" height="85px" />
+                  <Image src={item.image ? item.image : carouselOne} width="85px" height="85px" />
                 </div>
-                <h4 className="text-xl">Groceries</h4>
+                <h4 className="text-xl">{item.name ? item.name : "Groceries"}</h4>
               </div>
             </Link>
-          ))}
+          ))
+          }
 
       </Slider>
     </Fragment>
@@ -103,3 +112,8 @@ const CarouselSlider = ({backgroundColorClass}) => {
 };
 
 export default CarouselSlider;
+
+export async function getServerSideProps(){
+   
+                            
+}

@@ -1,31 +1,37 @@
+/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import { HeartIcon, ShareIcon, SwitchHorizontalIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
 import useCartHook from '../../hook/useCartHook';
-import SmallImageOne from '../../public/images/1.png';
-import SmallImageTwo from '../../public/images/2.png';
-import SmallImageThree from '../../public/images/3.png';
-import SmallImageFour from '../../public/images/4.png';
-import SmallImageFive from '../../public/images/5.png';
-import ModalMainImage from '../../public/images/product-2.png';
 
 
 
 const ModalComponent = ({modal, setModal, modalProductInfo}) => {
-    const [defaultImage, setdefaultImage] = useState(ModalMainImage);
+    const productItemId = modalProductInfo?.id
+    const productImageParse = modalProductInfo?.image ? JSON.parse(modalProductInfo?.image) : "";
+    const productImage = productImageParse[0];
+    const [defaultImage, setdefaultImage] = useState();
     const [productId, setProductId] = useState( modalProductInfo ? modalProductInfo.id : "")
     const {cartQuantity, addItemToCart, increaseProduct, decrementProduct} = useCartHook(productId);
   
 
 
-    //console.log("modla qunatity", cartQuantity, productId)
+    //console.log("modla qunatity", productImageParse)
+
+    const productInfo ={
+      id: productItemId,
+      title: modalProductInfo?.name,
+      price: modalProductInfo?.actual_price,
+      detail:"lorem",
+      image:productImage
+    }
     
     const addProduct = ()=>{
-      addItemToCart(modalProductInfo)
+      addItemToCart(productInfo)
     }
 
     const incriment = ()=>{
@@ -41,9 +47,12 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
     }
 
     useEffect(()=>{
-      setProductId( modalProductInfo ? modalProductInfo.id : "")
-          
+      setProductId( productItemId ?productItemId : "")
     })
+
+    useEffect(()=>{
+      setdefaultImage(productImage)
+    },[modalProductInfo])
 
     return (
         <>
@@ -60,15 +69,26 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
             <div className='absolute right-0'> <span onClick={() => setModal(false)}></span> </div>
             <div className='w-1/2'>
                 <div>
-                    <Image src={defaultImage} className='rounded-xl' width={500} height={500}/>
+                    {/* <Image src={defaultImage} className='rounded-xl' width={500} height={500}/> */}
+                    <img src={defaultImage} alt="" className='w-[500px] h-[500px]' />
                 </div>
-                <div className='flex items-center'>
-                    <Image width={100} height={100} src={ModalMainImage} onClick={()=>setdefaultImage(ModalMainImage)}/>
+                <div className='flex items-center cursor-pointer'>
+                    { productImageParse.length > 0 ?
+                      productImageParse?.map((image, index)=>{
+                        return  <img 
+                                  src={image} 
+                                  alt="" 
+                                  className="w-28 h-28 mr-1 mt-1"
+                                  onClick={()=>setdefaultImage(image)}
+                                />
+                      }) : "dd"
+                    }
+                    {/* <Image width={100} height={100} src={ModalMainImage} onClick={()=>setdefaultImage(ModalMainImage)}/>
                     <Image width={100} height={100} src={SmallImageOne} onClick={()=>setdefaultImage(SmallImageOne)}/>
                     <Image width={100} height={100} src={SmallImageTwo} onClick={()=>setdefaultImage(SmallImageTwo)}/>
                     <Image width={100} height={100} src={SmallImageThree} onClick={()=>setdefaultImage(SmallImageThree)} />
                     <Image width={100} height={100} src={SmallImageFour} onClick={()=>setdefaultImage(SmallImageFour)}/>
-                    <Image width={100} height={100} src={SmallImageFive} onClick={()=>setdefaultImage(SmallImageFive)}/>
+                    <Image width={100} height={100} src={SmallImageFive} onClick={()=>setdefaultImage(SmallImageFive)}/> */}
                 </div>
             </div>
 
@@ -76,7 +96,7 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
                 
                 <div>
                     <span className='text-xs text-gray-400 mr-5'>STATUS</span> <span className='text-xs bs-dark-green-color font-medium'>In Stock</span>
-                    <h2 className='mt-3 text-gray-900 font-medium'>{modalProductInfo?.title}</h2>
+                    <h2 className='mt-3 text-gray-900 font-medium'>{modalProductInfo?.name}</h2>
                     <div className='flex items-center'>
                         {Array(5).fill().map((_, i)=>(
                             <StarIcon className='h-4 text-orange-300' />
@@ -87,9 +107,9 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
              
                 <div className='mt-5'>
                     <span className="font-bold text-xl mr-3">
-                        $200.00
+                        ${modalProductInfo?.actual_price} 
                     </span>
-                    <del className="text-gray-400 mr-3">$ {modalProductInfo?.price}</del> <span className='text-xs text-gray-400'>(+15% vat included)</span>
+                    <del className="text-gray-400 mr-3">$ {modalProductInfo?.discount_price}</del> <span className='text-xs text-gray-400'>(+15% vat included)</span>
                     <p className='text-sm mt-2'>20 Products sold in last 12 hours</p>
                 </div>
                 
@@ -101,7 +121,7 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
                         <button className={`${cartQuantity && cartQuantity !== 0 ? "" : "hidden"} h-10 w-10 border border-gray-900 rounded-full ml-2`} onClick={dicrement}> - </button>
                         <span className="h-10 w-10 border rounded-full bg-gray-300 mx-2 text-center text-2xl font-medium leading-9"> {cartQuantity} </span>
                         <button className={`${cartQuantity && cartQuantity !== 0 ? "" : "hidden"} h-10 w-10 border border-gray-900 rounded-full mr-2`} onClick={incriment}> + </button> 
-                        <span className='text-xs text-gray-400'>Only 10 items left</span>
+                        <span className='text-xs text-gray-400'>Only {modalProductInfo?.quantity}  items left</span>
                     </div>
                 </div>
 

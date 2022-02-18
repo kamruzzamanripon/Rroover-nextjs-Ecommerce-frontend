@@ -13,7 +13,7 @@ const useCartHook = (id) => {
   const [cartQuantity, setCartQuantity] = useState(0);
   const cartItems = useSelector(selectItems);
   const Total = useSelector(selectTotal);
-  console.log("cart hook",cartQuantity )
+  //console.log("cart hook",cartQuantity )
   //console.log(cartItems )
 
   const addItemToCart = (productInfo) => {
@@ -34,7 +34,7 @@ const useCartHook = (id) => {
   
     setCartQuantity(0);    
     dispatch(removeFromCart(id));
-    console.log('Delete cart hook', cartQuantity)
+    //console.log('Delete cart hook', cartQuantity)
 }
 
 
