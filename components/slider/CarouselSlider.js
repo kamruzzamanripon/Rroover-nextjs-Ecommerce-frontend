@@ -44,7 +44,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const CarouselSlider = ({backgroundColorClass, dataArray, loading}) => {
+const CarouselSlider = ({backgroundColorClass, dataArray, loading, slug}) => {
   var settings = {
     dots: false,
     infinite: true,
@@ -95,7 +95,7 @@ const CarouselSlider = ({backgroundColorClass, dataArray, loading}) => {
         
         {  loading ? "Data Loading" : 
            dataArray?.map((item, index) => (
-            <Link href="/category" key={index}>
+            <Link href={`/${slug}/${item.id}`} key={index}>
               <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5 cursor-pointer text-center`} >
                 <div className="h-32 flex justify-center items-center">
                   <Image src={item.image ? item.image : carouselOne} width="85px" height="85px" />

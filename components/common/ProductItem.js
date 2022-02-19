@@ -6,40 +6,37 @@ import "slick-carousel/slick/slick.css";
 import useCartHook from '../../hook/useCartHook';
 import carouselOne from "../../public/images/product-1.png";
 
-const ProductItem = ({ setModal, id, displayStyle, key, setModalProductInfo }) => {
+const ProductItem = ({ setModal, id, displayStyle, key, setModalProductInfo, productItemInfo }) => {
 
-  const {addItemToCart, increaseProduct , decrementProduct, cartQuantity} = useCartHook(id)
+  const productItemId = productItemInfo.id
+  const {addItemToCart, increaseProduct, decrementProduct, cartQuantity } = useCartHook(productItemId);
+  const productImageParse = productItemInfo.image ? JSON.parse(productItemInfo?.image) : "";
+  const productImage = productImageParse[0];
+
   //console.log(id)
-  const addProduct = () => {
-    const productInfo = {
-      id: id,
-      title: "Product Name",
-      price: "300",
-      detail: "lorem",
-      image: carouselOne,
-    };
 
-    addItemToCart(productInfo);
+  const productInfo ={
+    id: productItemId,
+    title: productItemInfo?.name,
+    price: productItemInfo?.actual_price,
+    detail:"lorem",
+    image:productImage
+  }
+  const addProduct = () => {
+     addItemToCart(productInfo)
   };
 
   const increament = () => {
-    increaseProduct(id);
+    increaseProduct(productItemId)
   };
 
   const decrement = () => {
-    decrementProduct(id);
+    decrementProduct(productItemId)
   };
 
   const viewModal = ()=>{
-    const productInfo ={
-      id: id,
-      title: "Product Name",
-      price: "300",
-      detail:"lorem",
-      image:carouselOne
-  }
     setModal(true)
-    setModalProductInfo(productInfo)
+    setModalProductInfo(productItemInfo)
   } 
 
  
@@ -57,25 +54,22 @@ const ProductItem = ({ setModal, id, displayStyle, key, setModalProductInfo }) =
             >
               {/* <div className="h-80 flex items-center space-x-5 justify-between"> */}
               <div className="h-auto p-4">
-                <Image src={carouselOne} height="310" width="310" />
+                <Image src={productImage ? productImage : carouselOne} height="310" width="310" objectFit='contain'/>
               </div>
 
               <div className="mb-10">
-                <h4 className="text-xl mb-3">Product Name</h4>
+                <h4 className="text-xl mb-3">{productItemInfo?.name}</h4>
                 <p>
                   <span className="font-medium bs-dark-orange-color">
-                    $200.00
+                    ${productItemInfo?.actual_price}
                   </span>
-                  <del className="text-gray-400">$300</del>
+                  <del className="text-gray-400">${productItemInfo?.discount_price}</del>
                 </p>
               </div>
 
               {displayStyle === "menu" && (
                 <div className="hidden md:block w-1/4 text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-                  neque, laudantium, sapiente, ipsam ratione dicta atque
-                  doloribus officia quas architecto saepe explicabo voluptates
-                  mollitia. Sequi.
+                  {productItemInfo?.details}
                 </div>
               )}
 

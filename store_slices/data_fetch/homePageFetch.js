@@ -56,3 +56,33 @@ export const dealOfTheWeek =  createAsyncThunk(
     }
 )
 
+
+export const singleCategoryByIdData =  createAsyncThunk(
+  'homeSlice/singleCategoryById',
+    async (productId)=>{
+      try{
+        //console.log('single category axios', productId)
+          const res = await axios.get(`http://localhost:8000/api/v1/frontend/single-category/${productId}`);
+          console.log('axior', productId)
+          return res.data.data
+      }catch(e){
+         console.log(e.response)  
+      }
+  }
+)
+
+
+export const singleBrandByIdData =  createAsyncThunk(
+  'homeSlice/singleBrandByIdData',
+    async (brandId)=>{
+      try{
+        //console.log('single category axios', productId)
+          const res = await axios.get(`http://localhost:8000/api/v1/frontend/single-brand/${brandId}`);
+          //console.log('axior', productId)
+          return res.data.data
+      }catch(e){
+         console.log(e.response)  
+      }
+  }
+)
+

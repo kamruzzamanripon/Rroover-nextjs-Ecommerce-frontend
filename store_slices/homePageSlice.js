@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { brandData, categoryData, dealOfTheWeek, mainSliderData } from './data_fetch/homePageFetch';
+import { brandData, categoryData, dealOfTheWeek, mainSliderData, singleCategoryByIdData,singleBrandByIdData } from './data_fetch/homePageFetch';
 
 
 const initialState = {
@@ -10,11 +10,13 @@ const initialState = {
     },
     categories:{
         categoryLoading:false,
-        categoryItems:[]
+        categoryItems:[],
+        ctegeoryItemsById:[]
     },
     brands:{
         brandLoading:false,
-        brandItems:[]
+        brandItems:[],
+        brandItemsById:[]
     },
     dealOfTheWeek:{
         dealOfTheWeekLoading:false,
@@ -78,6 +80,33 @@ export const homePageSlice = createSlice({
         [dealOfTheWeek.rejected]: (state) => {
             state.dealOfTheWeek.dealOfTheWeekLoading = false
         },
+
+        //single Category By Id Data Reducer
+        [singleCategoryByIdData.pending]: (state) => {
+            state.categories.categoryLoading = true
+        },
+        [singleCategoryByIdData.fulfilled]: (state, { payload }) => {
+            state.categories.categoryLoading = false
+            state.categories.ctegeoryItemsById = payload
+        },
+        [singleCategoryByIdData.rejected]: (state) => {
+            state.categories.categoryLoading = false
+        },
+
+
+        //single Brand By Id Data Reducer
+        [singleBrandByIdData.pending]: (state) => {
+            state.brands.brandItemsById = true
+        },
+        [singleBrandByIdData.fulfilled]: (state, { payload }) => {
+            state.brands.brandItemsById = false
+            state.brands.brandItemsById = payload
+        },
+        [singleBrandByIdData.rejected]: (state) => {
+            state.brands.brandItemsById = false
+        },
+
+        
     },
 })
 

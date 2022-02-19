@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from "react";
 import AccordionCategories from "./category/AccordionCategories";
 import AccordionPriceSlider from "./category/AccordionPriceSlider";
@@ -7,8 +8,10 @@ import Products from "./category/Products";
 
 const Category = () => {
     const [displayStyle, setDisplayStyle] = useState('grid')
+    const router = useRouter();
+    const {query} = router;
     
-    console.log("display style", displayStyle)
+    //console.log("display style", query)
   return (
     <div className="container" id="modalRoot">
       <div className="sm:flex">

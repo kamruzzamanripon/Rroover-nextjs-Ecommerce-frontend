@@ -1,12 +1,20 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import ModalComponent from '../common/Modal';
 import ProductItem from '../common/ProductItem';
 
 const Products = ({displayStyle}) => {
   const [modal, setModal] = useState(false);
   const [modalProductInfo, setModalProductInfo] = useState();
+  const [productArray, setProductArray] = useState([])
+
+  const categoryProduct = useSelector(state=>state?.homePageItems?.categories?.ctegeoryItemsById?.products)
+  const brandProducts = useSelector(state=>state?.homePageItems?.brands?.brandItemsById);
    
-    //console.log("Product display style", displayStyle)
+  useEffect(()=>{
+    setProductArray(categoryProduct || brandProducts)
+  },[categoryProduct])
+    //console.log("Product display style", productArray)
     return (
         <Fragment>
           
@@ -14,13 +22,14 @@ const Products = ({displayStyle}) => {
                 <div className={`${displayStyle === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4" : ''}`}>
                 
             {
-                 Array(10).fill().map((_,index)=>(
+                 productArray.map((item,index)=>(
                     <ProductItem 
                     key={index} 
                     setModal={setModal}
                     id={index}
                     displayStyle={displayStyle}
                     setModalProductInfo={setModalProductInfo}
+                    productItemInfo={item}
                   />
                   
                  ))
