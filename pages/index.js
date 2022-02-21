@@ -18,7 +18,7 @@ export default function Index(props) {
 export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx)=>{
        
           await store.dispatch(mainSliderData())
-          await store.dispatch(categoryData())
+          //await store.dispatch(categoryData())
           await store.dispatch(brandData())
           await store.dispatch(dealOfTheWeek())
      
