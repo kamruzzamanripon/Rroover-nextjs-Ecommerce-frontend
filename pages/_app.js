@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps })=> {
 }
 
 
-MyApp.getInitialProps  = wrapper.getInitialAppProps(store => async (ctx)=>{
+MyApp.getInitialProps  = wrapper.getInitialAppProps( store => async (ctx)=>{
   //console.log("app root page")    
   await store.dispatch(categoryData())
 

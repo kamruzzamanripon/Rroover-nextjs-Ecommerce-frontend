@@ -62,7 +62,7 @@ export const singleCategoryByIdData =  createAsyncThunk(
     async (productId)=>{
       try{
         //console.log('single category axios', productId)
-          const res = await axios.get(`http://localhost:8000/api/v1/frontend/single-category/${productId}`);
+          const res = await axios.get(`${process.env.baseUrl}/single-category/${productId}`);
           console.log('axior', productId)
           return res.data.data
       }catch(e){
@@ -77,7 +77,7 @@ export const singleBrandByIdData =  createAsyncThunk(
     async (brandId)=>{
       try{
         //console.log('single category axios', productId)
-          const res = await axios.get(`http://localhost:8000/api/v1/frontend/single-brand/${brandId}`);
+          const res = await axios.get(`${process.env.baseUrl}/single-brand/${brandId}`);
           //console.log('axior', productId)
           return res.data.data
       }catch(e){

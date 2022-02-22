@@ -1,7 +1,19 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../store_slices/data_fetch/authPageFetch';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
+    const fromHandleSubmit = (e)=>{
+        e.preventDefault();
+        let data = {email, password}
+        dispatch(login(data))
+        
+    }
     return (
         <div className='container '>
             <div className='flex justify-center bg-gradient-to-r from-green-500 via-green-400 to-green-200 py-10 sm:mx-30 lg:mx-60 rounded-3xl'>
@@ -12,17 +24,27 @@ const Login = () => {
                     </div>
 
                     <div className='w-full'>
-                        <form>
+                        <form onSubmit={fromHandleSubmit}>
                             <label className="block mb-5">
                                 <span className="block text-sm font-medium text-slate-700">Username Or Email</span>
                             
-                                <input type="text" placeholder='username or email' className="input-box"/>
+                                <input 
+                                    type="text" 
+                                    placeholder='username or email' 
+                                    className="input-box"
+                                    onChange={e => setEmail(e.target.value)}
+                                />
                             </label>
 
                             <label className="block mb-5">
                                 <span className="block text-sm font-medium text-slate-700">password</span>
                             
-                                <input type="password" placeholder='password'  className="input-box"/>
+                                <input 
+                                    type="password" 
+                                    placeholder='password'  
+                                    className="input-box"
+                                    onChange={e => setPassword(e.target.value)}
+                                />
                             </label>
 
                             <label className="block mb-5 flex justify-between">

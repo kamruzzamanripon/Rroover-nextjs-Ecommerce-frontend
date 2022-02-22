@@ -10,8 +10,11 @@ const Category = () => {
     const [displayStyle, setDisplayStyle] = useState('grid')
     const router = useRouter();
     const {query} = router;
+
+    const [filterPrice, setFilterPrice] = useState('');
+    const [orderingProduct, setOrderingProduct] = useState('asc');
     
-    //console.log("display style", query)
+    //console.log("display orderingProduct", orderingProduct)
   return (
     <div className="container" id="modalRoot">
       <div className="sm:flex">
@@ -20,15 +23,15 @@ const Category = () => {
           
           <div className=" mb-8 sm:w-1/3 md:w-1/4 mx-6 sm:mx-0">
             <AccordionCategories />
-            <AccordionPriceSlider />
+            <AccordionPriceSlider setFilterPrice={setFilterPrice}  />
           </div>
 
 
 
           <div className=" sm:w-2/3 md:w-3/4 mx-6">
               <HeroBanner />
-              <CategoryTitleOther setDisplayStyle={setDisplayStyle} />
-              <Products displayStyle={displayStyle} />
+              <CategoryTitleOther setDisplayStyle={setDisplayStyle} setOrderingProduct={setOrderingProduct}/>
+              <Products displayStyle={displayStyle} filterPrice={filterPrice} orderingProduct={orderingProduct} />
             </div>
         
         {/* </div> */}

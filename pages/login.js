@@ -1,5 +1,6 @@
-import Layout from '../components/layout/Layout'
-import Login from '../components/Login'
+import Layout from '../components/layout/Layout';
+import Login from '../components/Login';
+import { wrapper } from '../store/store';
 
 
 export default function login(props) {
@@ -10,3 +11,9 @@ export default function login(props) {
     </Layout>
   )
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx)=>{
+   
+   
+
+})

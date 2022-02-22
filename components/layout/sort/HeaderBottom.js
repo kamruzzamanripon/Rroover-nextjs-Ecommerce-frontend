@@ -41,7 +41,7 @@ const HeaderBottom = () => {
           >
            
             <ul>
-              {categoryItems && (
+              {categoryItems.length > 0 && (
                 categoryItems.map((item,index)=>(
                   <li key={index} className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
                   <Link href={`/category/${item.id}`}>{item.name}</Link>
@@ -58,11 +58,8 @@ const HeaderBottom = () => {
             <li className="p-4">
               <Link href="/">Home</Link>
             </li>
-            <li className="p-4">
-              <Link href="/category">Categories</Link>
-            </li>
             <li className="hidden sm:block p-4">
-              <Link href="/">About</Link>
+              <Link href="/private">About</Link>
             </li>
             <li className="hidden sm:block p-4">
               <Link href="/">Contact</Link>
@@ -71,12 +68,12 @@ const HeaderBottom = () => {
               <Link href="/">FAQs</Link>
             </li>
             <li className="p-4">
-              <Link href="/category">Offers</Link>
+              <Link href="/">Offers</Link>
             </li>
           </ul>
         </div>
 
-        <Link href="/category">
+        <Link href="/">
           <div className="min-w-max bs-dark-orange-color flex items-center cursor-pointer">
             <Image src={u_percentage} />{" "}
             <span className="mr-3">Special Offers!</span>

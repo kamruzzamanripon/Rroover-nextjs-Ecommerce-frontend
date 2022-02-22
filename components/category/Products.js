@@ -3,18 +3,36 @@ import { useSelector } from 'react-redux';
 import ModalComponent from '../common/Modal';
 import ProductItem from '../common/ProductItem';
 
-const Products = ({displayStyle}) => {
+const Products = ({displayStyle, filterPrice, orderingProduct}) => {
   const [modal, setModal] = useState(false);
   const [modalProductInfo, setModalProductInfo] = useState();
   const [productArray, setProductArray] = useState([])
 
   const categoryProduct = useSelector(state=>state?.homePageItems?.categories?.ctegeoryItemsById?.products)
   const brandProducts = useSelector(state=>state?.homePageItems?.brands?.brandItemsById);
+
+  const categoryProductPriceFilter = categoryProduct?.filter((item, index, array)=>(
+    filterPrice ? item.actual_price <= filterPrice : array
+  ))
+
+  const brandProductsPriceFilter = brandProducts?.filter((item, index, array)=>(
+    filterPrice ? item.actual_price <= filterPrice : array
+  ))
+
+  
+  
    
   useEffect(()=>{
-    setProductArray(categoryProduct || brandProducts)
-  },[categoryProduct])
-    //console.log("Product display style", productArray)
+    setProductArray(categoryProductPriceFilter || brandProductsPriceFilter)
+  },[categoryProduct, filterPrice])
+
+  if(orderingProduct === 'desc'){
+     productArray.sort((a, b) => a.actual_price > b.actual_price ? -1 : 1);
+  }else{
+    productArray.sort((a, b) => a.actual_price < b.actual_price ? -1 : 1);
+  }
+  
+  //console.log("Product display orderingProduct", allProduct)
     return (
         <Fragment>
           

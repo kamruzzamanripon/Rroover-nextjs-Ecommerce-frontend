@@ -9,7 +9,7 @@ import {
 import "react-accessible-accordion/dist/fancy-example.css";
 import PriceSlider from "./PriceSlider";
 
-const AccordionPriceSlider = () => {
+const AccordionPriceSlider = ({setFilterPrice}) => {
   return (
     <Accordion preExpanded={['a']} allowZeroExpanded className="mt-8">
       <AccordionItem uuid="a">
@@ -20,7 +20,7 @@ const AccordionPriceSlider = () => {
         </AccordionItemHeading>
           <AccordionItemPanel>
 
-              <PriceSlider />
+              <PriceSlider setFilterPrice={setFilterPrice} />
               
           </AccordionItemPanel>
       </AccordionItem>

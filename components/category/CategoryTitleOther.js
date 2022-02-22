@@ -2,9 +2,10 @@ import { MenuAlt3Icon, ViewGridIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const CategoryTitleOther = ({setDisplayStyle}) => {
+const CategoryTitleOther = ({setDisplayStyle, setOrderingProduct}) => {
     const [Title, setTitle] = useState('Sample Category Name');
     const [productCount, setProductCount] = useState('');
+    
 
     const categoryName = useSelector(state=>state?.homePageItems?.categories?.ctegeoryItemsById?.name);
     const categoryProducts = useSelector(state=>state?.homePageItems?.categories?.ctegeoryItemsById?.products);
@@ -16,7 +17,7 @@ const CategoryTitleOther = ({setDisplayStyle}) => {
     const brandProductCount = brandProducts ? brandProducts.length : '';
 
 
-    //console.log("produt count", brandName)
+    //console.log("produt orderingProduct", orderingProduct)
     useEffect(()=>{
         setTitle(categoryName || brandName)
         setProductCount(categoryProductCount || brandProductCount)
@@ -38,10 +39,10 @@ const CategoryTitleOther = ({setDisplayStyle}) => {
                     <span ><MenuAlt3Icon onClick={()=>setDisplayStyle('menu')} className="h-8 cursor-pointer" /></span> &nbsp; &nbsp;
                     <span ><ViewGridIcon onClick={()=>setDisplayStyle('grid')} className="h-8 cursor-pointer" /></span>  &nbsp;
 
-                    <select name="" id="">
-                        <option value="">Default Sorting</option>
-                        <option value="">ASC Sorting</option>
-                        <option value="">DESC Sorting</option>
+                    <select name="" id="" onChange={(e)=>setOrderingProduct(e.target.value)}>
+                        <option value="asc">Default Sorting</option>
+                        <option value="asc">ASC Sorting</option>
+                        <option value="desc">DESC Sorting</option>
                     </select>
                 </div>
             </div>
