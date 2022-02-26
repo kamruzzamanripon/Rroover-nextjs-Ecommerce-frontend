@@ -47,3 +47,21 @@ export const logout = createAsyncThunk(
     }
 )
 
+
+export const registration = createAsyncThunk(
+    'authenticationSlice/registration',
+    async(data)=>{
+        try{
+            //console.log('axios registration page', data)
+            const res = await axios.post(`${process.env.baseUrl}/user-register/`, data);
+            
+            return res.data;
+
+        }catch(e){
+
+            //console.log("login usere ERror",e.response)
+            return e.response;
+        }
+    }
+)
+

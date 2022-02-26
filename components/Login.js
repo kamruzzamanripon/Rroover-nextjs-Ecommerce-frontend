@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store_slices/data_fetch/authenticationDataFetch';
 
@@ -17,9 +17,9 @@ const Login = () => {
     const [serverErrordata, setServerErrordata] = useState("");
 
     //console.log("login page", userLoginSuccess)
-    const fromHandleSubmit = (d)=>{
+    const fromHandleSubmit = (data)=>{
         //e.preventDefault();
-        let data = {email, password}
+        //let data = {email, password}
         dispatch(login(data))
         
     }
@@ -35,7 +35,7 @@ const Login = () => {
         }
     },[userLoginSuccess, serverError])
 
-    console.log("user warning", serverErrordata)
+    //console.log("user warning", email)
     return (
         <div className='container '>
             <Toaster />

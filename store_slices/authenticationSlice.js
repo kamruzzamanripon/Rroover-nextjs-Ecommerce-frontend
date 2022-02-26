@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout } from './data_fetch/authenticationDataFetch';
+import { login, logout, registration } from './data_fetch/authenticationDataFetch';
 
 
 const initialState = {
@@ -25,6 +25,7 @@ const authenticationSlice = createSlice({
             state.authLoading = false
         },
 
+
         // Logout Reducer
         [logout.pending]: (state) => {
             state.authLoading = true
@@ -34,6 +35,19 @@ const authenticationSlice = createSlice({
             state.userInfo = payload
         },
         [logout.rejected]: (state) => {
+            state.authLoading = false
+        },
+
+
+        // registration Reducer
+        [registration.pending]: (state) => {
+            state.authLoading = true
+          },
+        [registration.fulfilled]: (state, { payload }) => {
+            state.authLoading = false
+            state.userInfo = payload
+        },
+        [registration.rejected]: (state) => {
             state.authLoading = false
         },
     }
