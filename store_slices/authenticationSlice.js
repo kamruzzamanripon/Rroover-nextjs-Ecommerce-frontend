@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout, registration } from './data_fetch/authenticationDataFetch';
+import { forgetPassword, forgetPasswordReset, login, logout, registration } from './data_fetch/authenticationDataFetch';
 
 
 const initialState = {
@@ -48,6 +48,33 @@ const authenticationSlice = createSlice({
             state.userInfo = payload
         },
         [registration.rejected]: (state) => {
+            state.authLoading = false
+        },
+
+
+        // forgetPassword Reducer
+        [forgetPassword.pending]: (state) => {
+            state.authLoading = true
+          },
+        [forgetPassword.fulfilled]: (state, { payload }) => {
+            state.authLoading = false
+            state.userInfo = payload
+        },
+        [forgetPassword.rejected]: (state) => {
+            state.authLoading = false
+        },
+
+
+
+        // forgetPasswordReset Reducer
+        [forgetPasswordReset.pending]: (state) => {
+            state.authLoading = true
+          },
+        [forgetPasswordReset.fulfilled]: (state, { payload }) => {
+            state.authLoading = false
+            state.userInfo = payload
+        },
+        [forgetPasswordReset.rejected]: (state) => {
             state.authLoading = false
         },
     }

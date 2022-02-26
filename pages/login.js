@@ -7,7 +7,7 @@ import { wrapper } from '../store/store';
 export default function login(props) {
   //console.log("Index",props)
   return (
-    <Layout title='Home Layout'>
+    <Layout title='Login'>
        <Login />
     </Layout>
   )

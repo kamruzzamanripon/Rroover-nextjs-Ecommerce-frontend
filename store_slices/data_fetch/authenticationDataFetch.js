@@ -65,3 +65,41 @@ export const registration = createAsyncThunk(
     }
 )
 
+
+export const forgetPassword = createAsyncThunk(
+    'authenticationSlice/forgetpassword',
+    async(data)=>{
+        try{
+            //console.log('axios registration page', data)
+            const res = await axios.post(`${process.env.baseUrl}/password/forgot-password/`, data);
+            console.log('axios forgetpassword', res)
+            console.log('axios forgetpassword', res.data)
+            return res.data;
+
+        }catch(e){
+
+            //console.log("login usere ERror",e.response)
+            return e.response;
+        }
+    }
+)
+
+
+export const forgetPasswordReset = createAsyncThunk(
+    'authenticationSlice/forgetpasswordreset',
+    async(data)=>{
+        try{
+            //console.log('axios registration page', data)
+            const res = await axios.post(`${process.env.baseUrl}/password/reset/`, data);
+            console.log('axios forgetpassword', res)
+            console.log('axios forgetpassword', res.data)
+            return res.data;
+
+        }catch(e){
+
+            //console.log("login usere ERror",e.response)
+            return e.response;
+        }
+    }
+)
+
