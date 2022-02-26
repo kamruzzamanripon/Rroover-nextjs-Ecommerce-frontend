@@ -1,15 +1,27 @@
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import chevronDown from "../../../public/images/chevron-down.png";
 import MenuRight from "../../../public/images/menu-right.png";
 import u_percentage from "../../../public/images/u_percentage.png";
+import { userInfo } from "../../../store_slices/data_fetch/userPageFetch";
 
 const HeaderBottom = () => {
   const [allCategoryMenu, setAllCategoryMenu] = useState(false);
 
   const {categoryItems} = useSelector(state=>state.homePageItems.categories)
+  const userallInfo = Cookies.get('user_info'); 
+  const userInfoParse = userallInfo ? JSON.parse(userallInfo) : '';
+  const userId = userInfoParse.id
+
+  const dispatch = useDispatch();
+
+  const userHandle = (e)=>{
+    e.preventDefault();
+    dispatch(userInfo())
+  }
   //console.log(categoryItems)
   return (
     <div className="mb-10">
@@ -59,16 +71,19 @@ const HeaderBottom = () => {
               <Link href="/">Home</Link>
             </li>
             <li className="hidden sm:block p-4">
-              <Link href="/private">About</Link>
+              <Link href="/" >About</Link>
             </li>
             <li className="hidden sm:block p-4">
-              <Link href="/">Contact</Link>
+              <Link href="/private">Contact</Link>
             </li>
             <li className="hidden sm:block p-4">
               <Link href="/">FAQs</Link>
             </li>
             <li className="p-4">
               <Link href="/">Offers</Link>
+            </li>
+            <li className="hidden sm:block p-4">
+              <Link href="/user" onClick={(e)=> userHandle(e)}>UserInfo</Link>
             </li>
           </ul>
         </div>

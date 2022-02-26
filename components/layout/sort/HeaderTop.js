@@ -1,14 +1,38 @@
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import toast, { Toaster } from "react-hot-toast";
 import Heart from "../../../public/images/heart.png";
 import Search from "../../../public/images/search.png";
 import Logo from "../../common/Logo";
+import Account from "./Account";
+import LogOut from "./LogOut";
 
 const HeaderTop = () => {
+    const [token, setToken] = useState(false)
+    const [tokenStatus, setTokenStatus] = useState(true)
+    const Cookiestoken = Cookies.get('passport_frontend') ? Cookies.get('passport_frontend') : ''
+
+    useEffect(()=>{
+      if(Cookiestoken && Cookiestoken.length > 1){
+        setToken(true)
+      }
+      
+    },[token, setToken, Cookiestoken])
+
+    useEffect(()=>{
+     if(tokenStatus === false){
+        setToken(false)
+        toast("Successfully Log Out.")
+      }
+    })
+    
+    //console.log("headers", token)
+    //console.log("headers22", tokenStatus, token)
     return (
         <div className="flex justify-between items-center py-6">
-        
+        <Toaster />
         <Logo />
 
         <div className="w-96 hidden sm:block">
@@ -39,28 +63,28 @@ const HeaderTop = () => {
           </Link>
           
           
-          {/* if loging true then show this component */}
-          {/* <Link href="/">
-            <a className="flex items-center">
-              <span className="bs-icon-box rounded-full hover:bg-gray-200 inline-block flex items-center justify-center">
-                <Image src={UserPic} alt="" />
-              </span>
-              <span>Account</span>
-            </a>
-          </Link> */}
+         
+          {token ? (<>
+                    <Account />
+                    <LogOut setTokenStatus={setTokenStatus} /> 
+                  </>) 
+            :
+            (<>
+              <Link href="/login">
+                <a className="flex items-center">
+                  <span>Login</span>
+                </a>
+              </Link><span> / </span><Link href="/register">
+                  <a className="flex items-center">
+                    <span>Register</span>
+                  </a>
+              </Link>
+            </>)
+          }
 
+          
 
-          <Link href="/login">
-            <a className="flex items-center">
-              <span>Login</span>
-            </a>
-          </Link>
-          <span> / </span>
-          <Link href="/register">
-            <a className="flex items-center">
-              <span>Register</span>
-            </a>
-          </Link>
+          
         </div>
         
       </div>

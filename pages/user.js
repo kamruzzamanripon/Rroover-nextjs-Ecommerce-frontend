@@ -2,23 +2,23 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import MiniCart from '../components/MiniCart';
-import Private from '../components/Private';
+import User from '../components/User';
 import usePrivateRoute from '../hook/usePrivateRoute';
 import { wrapper } from '../store/store';
 
-const PrivatePage = () => {
+const userPage = () => {
     return (
         <Layout title='Home Layout'>
             <MiniCart />
-            <Private />
+            <User />
         </Layout>
     );
 };
 
-export default usePrivateRoute(PrivatePage);
+export default usePrivateRoute(userPage);
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx)=>{
    
-   
+   // usePrivateRoute(ctx)
 
 })
