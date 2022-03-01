@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,11 +11,11 @@ import { userInfo } from "../../../store_slices/data_fetch/userPageFetch";
 
 const HeaderBottom = () => {
   const [allCategoryMenu, setAllCategoryMenu] = useState(false);
-
-  const {categoryItems} = useSelector(state=>state.homePageItems.categories)
+  const {categoryItems} = useSelector(state=>state.homePageItems?.categories)
   const userallInfo = Cookies.get('user_info'); 
   const userInfoParse = userallInfo ? JSON.parse(userallInfo) : '';
-  const userId = userInfoParse.id
+  const userId = userInfoParse.id;
+  const categoryLoading = useSelector(state=>state.homePageItems?.categories?.categoryLoading)
 
   const dispatch = useDispatch();
 
@@ -22,7 +23,10 @@ const HeaderBottom = () => {
     e.preventDefault();
     dispatch(userInfo())
   }
-  //console.log(categoryItems)
+
+
+  
+  //console.log("categoryData")
   return (
     <div className="mb-10">
       <div className=" flex items-center ">
@@ -52,15 +56,17 @@ const HeaderBottom = () => {
             } absolute w-100% whitespace-nowrap px-5 sm:w-full bs-dark-green-bg z-10 -mt-5 pt-6 pb-4 rounded-b-2xl`}
           >
            
+           {!categoryLoading && (
             <ul>
               {categoryItems.length > 0 && (
                 categoryItems.map((item,index)=>(
-                  <li key={index} className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold">
-                  <Link href={`/category/${item.id}`}>{item.name}</Link>
+                  <li key={index} className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold" >
+                  <Link href={`/category/${item.id}`} >{item.name}</Link>
                 </li>
                 ))
               )}
             </ul>
+            )}
 
           </div>
         </div>
@@ -71,7 +77,7 @@ const HeaderBottom = () => {
               <Link href="/">Home</Link>
             </li>
             <li className="hidden sm:block p-4">
-              <Link href="/" >About</Link>
+              <Link href="/cart" >About</Link>
             </li>
             <li className="hidden sm:block p-4">
               <Link href="/private">Contact</Link>

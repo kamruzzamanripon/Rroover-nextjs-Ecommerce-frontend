@@ -28,7 +28,7 @@ const Home = () => {
 
         <div className="container my-10">
             <TitleWithBorderBandComponent title="Search By Category" />
-            <CarouselSlider backgroundColorClass="bg-gray-200" slug="category" dataArray={categoryItems} loading={categoryLoading} />
+            {/* <CarouselSlider backgroundColorClass="bg-gray-200" slug="category" dataArray={categoryItems} loading={categoryLoading} /> */}
         </div>
 
         <div className="container">

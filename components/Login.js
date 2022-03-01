@@ -13,7 +13,8 @@ const Login = () => {
     const serverError = useSelector(state=> state.authInfo?.userInfo?.error);
     const { register, handleSubmit, formState: { errors }, } = useForm(); 
     const [serverErrordata, setServerErrordata] = useState("");
-    const loading = useSelector(state=> state.authInfo?.authLoading)
+    const loading = useSelector(state=> state.authInfo?.authLoading);
+    const serverError2 = useSelector(state=>state.authInfo?.userInfo?.data?.message)
 
     //console.log("login page", userLoginSuccess)
     const fromHandleSubmit = (data)=>{
@@ -41,6 +42,7 @@ const Login = () => {
                     <div className='w-full mb-10'>
                         <h2 className='text-4xl uppercase underline'>Login Information</h2>
                         <h3>{serverErrordata && serverErrordata}</h3>
+                        <h3>{serverError2 && serverError2 }</h3>
                     </div>
 
                     <div className='w-full'>

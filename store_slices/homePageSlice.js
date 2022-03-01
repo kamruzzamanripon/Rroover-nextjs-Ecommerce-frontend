@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { brandData, categoryData, dealOfTheWeek, mainSliderData, singleCategoryByIdData,singleBrandByIdData } from './data_fetch/homePageFetch';
+import { brandData, categoryData, dealOfTheWeek, mainSliderData, singleBrandByIdData, singleCategoryByIdData } from './data_fetch/homePageFetch';
 
 
 const initialState = {
@@ -44,7 +44,7 @@ export const homePageSlice = createSlice({
         },
 
 
-        // Search By Category Reducer
+        // Category Reducer
         [categoryData.pending]: (state) => {
             state.categories.categoryLoading = true
         },

@@ -2,7 +2,7 @@ import Home from '../components/Home'
 import Layout from '../components/layout/Layout'
 import MiniCart from '../components/MiniCart'
 import { wrapper } from '../store/store'
-import { brandData, categoryData, dealOfTheWeek, mainSliderData } from '../store_slices/data_fetch/homePageFetch'
+import { brandData, dealOfTheWeek, mainSliderData } from '../store_slices/data_fetch/homePageFetch'
 
 
 export default function Index(props) {

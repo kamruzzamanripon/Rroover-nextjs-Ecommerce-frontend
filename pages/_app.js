@@ -11,7 +11,8 @@ const MyApp = ({ Component, pageProps })=> {
 
 
 MyApp.getInitialProps  = wrapper.getInitialAppProps( store => async (ctx)=>{
-  //console.log("app root page")    
+  //console.log("app root page", store)    
+  
   await store.dispatch(categoryData())
 
 })
