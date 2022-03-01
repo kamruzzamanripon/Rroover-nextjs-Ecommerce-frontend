@@ -86,20 +86,15 @@ const HeaderBottom = () => {
               <Link href="/">Home</Link>
             </li>
             <li className="hidden sm:block p-4">
-              <Link href="/cart" >About</Link>
+              <Link href="/about" >About</Link>
             </li>
             <li className="hidden sm:block p-4">
-              <Link href="/private">Contact</Link>
+              <Link href="/">Contact</Link>
             </li>
             <li className="hidden sm:block p-4">
               <Link href="/">FAQs</Link>
             </li>
-            <li className="p-4">
-              <Link href="/">Offers</Link>
-            </li>
-            <li className="hidden sm:block p-4">
-              <Link href="/user" onClick={(e)=> userHandle(e)}>UserInfo</Link>
-            </li>
+                        
           </ul>
         </div>
 

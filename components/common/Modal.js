@@ -3,9 +3,11 @@
 /* eslint-disable react/jsx-key */
 import { HeartIcon, ShareIcon, SwitchHorizontalIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
+import LocalStorageHelper from '../../hook/LocalStorageHelper';
 import useCartHook from '../../hook/useCartHook';
 
 
@@ -17,6 +19,7 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
     const [defaultImage, setdefaultImage] = useState();
     const [productId, setProductId] = useState( modalProductInfo ? modalProductInfo.id : "")
     const {cartQuantity, addItemToCart, increaseProduct, decrementProduct} = useCartHook(productId);
+    const router = useRouter();
   
 
 
@@ -42,9 +45,22 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
       decrementProduct(productId)
     }
 
+    const urlSaveIfNotLogin = ()=>{
+      let urlLocation = window.location;
+      LocalStorageHelper.SetRedirectFromDetails(urlLocation)
+      let loginStatus = LocalStorageHelper.userLoginStatus()
+
+      if(loginStatus){
+        router.push('/cart')
+      }else{
+        router.push('/login')
+      }
+    }
+
     function toggleModal(e) {
       setIsOpen(!isOpen)
     }
+    
 
     useEffect(()=>{
       setProductId( productItemId ?productItemId : "")
@@ -127,7 +143,7 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
 
                 <div>
                   <button className='w-full h-12 bs-dark-green-bg text-white rounded-3xl mb-3' onClick={addProduct} >Add To Cart</button>
-                  <button className='w-full h-12 bg-gray-300 text-black rounded-3xl'>Buy Now</button>
+                  <button className='w-full h-12 bg-gray-300 text-black rounded-3xl' onClick={urlSaveIfNotLogin}>Buy Now</button>
                 </div>
 
                 <div className='flex justify-between text-xs my-3 mx-2'>

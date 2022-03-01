@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
+import LocalStorageHelper from '../hook/LocalStorageHelper';
 import { login } from '../store_slices/data_fetch/authenticationDataFetch';
 
 const Login = () => {
@@ -15,16 +16,24 @@ const Login = () => {
     const [serverErrordata, setServerErrordata] = useState("");
     const loading = useSelector(state=> state.authInfo?.authLoading);
     const serverError2 = useSelector(state=>state.authInfo?.userInfo?.data?.message)
+    const hasUrl = LocalStorageHelper.GetRedirectFromDetails();
 
-    //console.log("login page", userLoginSuccess)
+
+    //console.log("login page", hasUrl)
     const fromHandleSubmit = (data)=>{
         dispatch(login(data))
     }
 
     useEffect(()=>{
-        if(userLoginSuccess){
+        if(userLoginSuccess && hasUrl){
+            toast("Successfully Log In.")
+            router.push(hasUrl)
+            //router.replace('/')
+            console.log("login")
+        } else if(userLoginSuccess ){
             toast("Successfully Log In.")
             router.replace('/')
+            //console.log("login")
         }
 
         if(serverError){

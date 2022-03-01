@@ -28,6 +28,8 @@ const RightSide = () => {
                     <Image
                       src={item ? item.image : ""}
                       className="w-full h-full rounded-sm"
+                      height={80}
+                      width= {80}
                     />
                   </div>
                   <div className="text-gray-900 whitespace-no-wrap text-sm">

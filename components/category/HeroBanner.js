@@ -9,7 +9,7 @@ const HeroBanner = () => {
     const categoryImage = useSelector(state=>state?.homePageItems?.categories?.ctegeoryItemsById?.image);
     const brandImage = useSelector(state=>state?.homePageItems?.brands?.brandItemsById[0]?.brand?.image);
 
-    console.log("hero", brandImage)
+    //console.log("hero", brandImage)
 
     useEffect(()=>{
         setHeroImage(categoryImage || brandImage)
