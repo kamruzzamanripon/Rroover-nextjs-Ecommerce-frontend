@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
-  decrementQuantity,
-  incrementQuantity, removeFromCart, selectItems,
+  decrementQuantity, getCart, incrementQuantity, removeFromCart, selectItems,
   selectTotal
 } from "../store_slices/cartSlice";
 
@@ -14,7 +13,7 @@ const useCartHook = (id) => {
   const cartItems = useSelector(selectItems);
   const Total = useSelector(selectTotal);
   //console.log("cart hook",cartQuantity )
-  //console.log(cartItems )
+  //console.log(cartItems, getCart )
 
   const addItemToCart = (productInfo) => {
     dispatch(addToCart(productInfo));
@@ -38,6 +37,7 @@ const useCartHook = (id) => {
 }
 
 
+
   useEffect(() => {
 
     cartItems.map((item, index) => {
@@ -47,12 +47,18 @@ const useCartHook = (id) => {
         
     });
 
+    
     const itemIndex = cartItems.findIndex((item) => item.id === id);
     if(itemIndex < 0){
       setCartQuantity(0);
     }
    
   },[cartItems, id]);
+
+
+  useEffect(()=>{
+    dispatch(getCart())
+  },[])
 
     return {
         cartQuantity,

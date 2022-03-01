@@ -8,18 +8,31 @@ const cartSlice = createSlice({
     name:"cart",
     initialState,
     reducers:{
+
+        getCart: (state, action)=> {
+          if (localStorage && localStorage.getItem('cart')) {
+            state.items = JSON.parse(localStorage.getItem('cart'));
+
+          } else {
+            state.items = [];
+          }
+        },
         addToCart: (state, action) => {
             const itemExists = state.items.find((item) => item.id === action.payload.id);
             if (itemExists) {
               itemExists.quantity++;
             } else {
-                state.items = [...state.items, { ...action.payload, quantity: 1 }]
+              state.items = [...state.items, { ...action.payload, quantity: 1 }]
             }
+
+            localStorage.setItem('cart', JSON.stringify(state.items));
           },
 
         incrementQuantity: (state, action) => {
             const item = state.items.find((item) => item.id === action.payload);
             item.quantity++;
+            
+            localStorage.setItem('cart', JSON.stringify(state.items));
           }, 
           
         decrementQuantity: (state, action) => {
@@ -30,6 +43,8 @@ const cartSlice = createSlice({
             } else {
               item.quantity--;
             }
+
+            localStorage.setItem('cart', JSON.stringify(state.items));
           },
 
         removeFromCart: (state, action) => {
@@ -46,11 +61,12 @@ const cartSlice = createSlice({
             }
 
             state.items = newCart;
+            localStorage.setItem('cart', JSON.stringify(state.items));
         }
     }
 })
 
-export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity, getCart } = cartSlice.actions;
 
 //Selectors- this is how we pull information from the global store slice
 export const selectItems = (state) => state.cart.items;

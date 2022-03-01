@@ -2,11 +2,12 @@
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import chevronDown from "../../../public/images/chevron-down.png";
 import MenuRight from "../../../public/images/menu-right.png";
 import u_percentage from "../../../public/images/u_percentage.png";
+import { getCart } from "../../../store_slices/cartSlice";
 import { userInfo } from "../../../store_slices/data_fetch/userPageFetch";
 
 const HeaderBottom = () => {
@@ -15,8 +16,8 @@ const HeaderBottom = () => {
   const userallInfo = Cookies.get('user_info'); 
   const userInfoParse = userallInfo ? JSON.parse(userallInfo) : '';
   const userId = userInfoParse.id;
-  const categoryLoading = useSelector(state=>state.homePageItems?.categories?.categoryLoading)
-
+  const categoryLoading = useSelector(state=>state.homePageItems?.categories?.categoryLoading);
+  
   const dispatch = useDispatch();
 
   const userHandle = (e)=>{
@@ -24,7 +25,12 @@ const HeaderBottom = () => {
     dispatch(userInfo())
   }
 
+  useEffect(()=>{
+    dispatch(getCart())
+    //console.log("categoryData")
+  })
 
+ 
   
   //console.log("categoryData")
   return (
@@ -60,7 +66,10 @@ const HeaderBottom = () => {
             <ul>
               {categoryItems.length > 0 && (
                 categoryItems.map((item,index)=>(
-                  <li key={index} className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold" >
+                  <li 
+                    key={index} 
+                    className="block text-white py-2 px-4 transition ease-out duration-100 hover:text-gray-700 hover:font-bold" 
+                  >
                   <Link href={`/category/${item.id}`} >{item.name}</Link>
                 </li>
                 ))
