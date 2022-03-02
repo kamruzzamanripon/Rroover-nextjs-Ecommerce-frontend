@@ -11,7 +11,11 @@ class LocalStorageHelper {
     }
 
     static userLoginStatus(){
-        return Cookies.get('passport_frontend')
+        return Cookies.get('passport_frontend');
+    }
+
+    static userInfo(){
+        return Cookies.get('user_info') 
     }
 }
 export default LocalStorageHelper;

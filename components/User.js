@@ -1,23 +1,31 @@
-import Cookies from 'js-cookie';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { userInfo } from '../store_slices/data_fetch/userPageFetch';
+import { useSelector } from 'react-redux';
 
 
 const User = () => {
-   const userallInfo = Cookies.get('user_info'); 
-   const userInfoParse = userallInfo ? JSON.parse(userallInfo) : '';
-
-   const dispatch = useDispatch();
-
-   const buttonHandle = ()=>{
-    dispatch(userInfo())
-   }
-   //console.log(userInfoParse)
+  const {address, city, mobile, user} = useSelector(state=> state.userInfo.authInfo)
     return (
-        <div>
-            <h1 >This is urser page {userInfoParse.id}</h1>
-            <button onClick={buttonHandle}>click here</button>
+        <div className='container text-center ml-auto mr-auto tab'>
+            <div className="table-responsive">
+                <table className="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <td>{user?.name}</td>
+                    </tr>
+                    <tr>
+                        <th>address</th>
+                        <td>{address}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{city}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>{mobile}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     );
 };

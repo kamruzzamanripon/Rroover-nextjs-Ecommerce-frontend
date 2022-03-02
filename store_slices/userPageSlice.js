@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { userInfo } from './data_fetch/userPageFetch';
 
 
+
 const initialState = {
     authLoading: false,
     authInfo:{}
