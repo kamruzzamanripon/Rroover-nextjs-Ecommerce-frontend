@@ -53,7 +53,7 @@ const MiniCart = () => {
                                             </div>
 
                                             <div className='ml-2'>
-                                                <Image src={item ? item.image : ""} width="65" height="65"/>
+                                                <Image src={item ? process.env.ImagebaseUrl + item.image : ""} width="65" height="65"/>
                                             </div>
 
                                             <div className='text-left ml-2'>

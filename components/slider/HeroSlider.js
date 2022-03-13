@@ -72,7 +72,7 @@ const HeroSlider = () => {
  
                  <div className="w-1/2 flex justify-end text-right">
                    <Image 
-                      src={ item.image ? item.image : HeroImage} 
+                      src={ item.image ? process.env.ImagebaseUrl + item.image : HeroImage} 
                       width="661"
                       height="819"
                     />

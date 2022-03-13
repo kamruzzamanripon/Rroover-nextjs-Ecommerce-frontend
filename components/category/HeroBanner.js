@@ -16,7 +16,7 @@ const HeroBanner = () => {
     },[brandImage, categoryImage])    
     return (
         <div className='mb-5 relative '>
-            <Image src={heroImage ? heroImage : sampleImage} height="25px" width="100%" layout='responsive' />
+            <Image src={heroImage ? process.env.ImagebaseUrl + heroImage : sampleImage} height="25px" width="100%" layout='responsive' />
            
 
             <div className='absolute left-8 top-0'>

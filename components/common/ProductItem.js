@@ -54,7 +54,7 @@ const ProductItem = ({ setModal, id, displayStyle, key, setModalProductInfo, pro
             >
               {/* <div className="h-80 flex items-center space-x-5 justify-between"> */}
               <div className="h-auto p-4">
-                <Image src={productImage ? productImage : carouselOne} height="310" width="310" objectFit='contain'/>
+                <Image src={productImage ? process.env.ImagebaseUrl + productImage : carouselOne} height="310" width="310" objectFit='contain'/>
               </div>
 
               <div className="mb-10">

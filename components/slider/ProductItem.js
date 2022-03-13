@@ -52,7 +52,7 @@ const ProductItem = ({setModal,id, setModalProductInfo, productItemInfo}) => {
               <div className='single-bs-product'>
                 <div className="h-100 product-img group relative">
                   <div className="bg-gray-50 h-full flex justify-center items-center p-4 mb-6">
-                    <Image src={productImage ? productImage : carouselOne} width='318' height='381' objectFit='contain'/>
+                    <Image src={productImage ? process.env.ImagebaseUrl + productImage : carouselOne} width='318' height='381' objectFit='contain'/>
                   </div>
                   
                   <h4 className="text-xl mb-3">{productItemInfo?.name}</h4>

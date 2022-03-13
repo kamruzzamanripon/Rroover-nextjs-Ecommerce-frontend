@@ -15,7 +15,7 @@ import useCartHook from '../../hook/useCartHook';
 const ModalComponent = ({modal, setModal, modalProductInfo}) => {
     const productItemId = modalProductInfo?.id
     const productImageParse = modalProductInfo?.image ? JSON.parse(modalProductInfo?.image) : "";
-    const productImage = productImageParse[0];
+    const productImage = process.env.ImagebaseUrl + productImageParse[0];
     const [defaultImage, setdefaultImage] = useState();
     const [productId, setProductId] = useState( modalProductInfo ? modalProductInfo.id : "")
     const {cartQuantity, addItemToCart, increaseProduct, decrementProduct} = useCartHook(productId);
@@ -30,7 +30,7 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
       title: modalProductInfo?.name,
       price: modalProductInfo?.actual_price,
       detail:"lorem",
-      image:productImage
+      image: productImage
     }
     
     const addProduct = ()=>{
@@ -92,10 +92,10 @@ const ModalComponent = ({modal, setModal, modalProductInfo}) => {
                     { productImageParse.length > 0 ?
                       productImageParse?.map((image, index)=>{
                         return  <img 
-                                  src={image} 
+                                  src={process.env.ImagebaseUrl + image} 
                                   alt="" 
                                   className="w-28 h-28 mr-1 mt-1"
-                                  onClick={()=>setdefaultImage(image)}
+                                  onClick={()=>setdefaultImage(process.env.ImagebaseUrl + image)}
                                 />
                       }) : "dd"
                     }

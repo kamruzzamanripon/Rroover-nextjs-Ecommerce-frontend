@@ -26,7 +26,7 @@ const RightSide = () => {
                 <div className="flex">
                   <div className="flex-shrink-0 w-12 h-12 mr-2">
                     <Image
-                      src={item ? item.image : ""}
+                      src={item ? process.env.ImagebaseUrl + item.image : ""}
                       className="w-full h-full rounded-sm"
                       height={80}
                       width= {80}

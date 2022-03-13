@@ -14,7 +14,7 @@ const HeaderBottom = () => {
 
 
   
-  //console.log("categoryData")
+  //console.log("categoryData", categoryItems)
   return (
     <div className="mb-10">
       <div className=" flex items-center ">

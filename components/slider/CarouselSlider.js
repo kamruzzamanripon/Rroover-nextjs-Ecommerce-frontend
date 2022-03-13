@@ -98,7 +98,7 @@ const CarouselSlider = ({backgroundColorClass, dataArray, loading, slug}) => {
             <Link href={`/${slug}/${item.id}`} key={index}>
               <div className={`${backgroundColorClass} p-4 slicker-carousel mr-5 cursor-pointer text-center`} >
                 <div className="h-32 flex justify-center items-center">
-                  <Image src={item.image ? item.image : carouselOne} width="85px" height="85px" />
+                  <Image src={item.image ? process.env.ImagebaseUrl + item.image : carouselOne} width="85px" height="85px" />
                 </div>
                 <h4 className="text-xl">{item.name ? item.name : "Groceries"}</h4>
               </div>
