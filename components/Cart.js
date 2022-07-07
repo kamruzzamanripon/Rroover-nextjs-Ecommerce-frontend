@@ -71,7 +71,7 @@ const deleteP = (id)=>{
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-base">
                           <div className="flex">
                             <div className="flex-shrink-0 w-10 h-10">
-                              <Image src={item ? process.env.ImagebaseUrl + item.image : ""} width="100" height="100"/>
+                              <Image src={item ? process.env.ImagebaseUrl + item.image : ""} width="100" height="100" alt="imegeOne"/>
                             </div>
                           </div>
                         </td>

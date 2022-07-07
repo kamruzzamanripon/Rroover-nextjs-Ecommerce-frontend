@@ -16,55 +16,67 @@
 
 ## Home Page
 
-## ![This is a alt text.](/public/home.jpg)
+## ![This is a alt text.](/public/screenshort/home.png)
 
 ---
 
-## Login and Register
+## Product Details
 
-## ![This is a alt text.](/public/login_register.png)
+## ![This is a alt text.](/public/screenshort/product_details.jpg)
 
 ---
 
-## Single Page
+## Quick Cart
 
-![This is a alt text.](/public/single_Page.png)
+![This is a alt text.](/public/screenshort/quick_cart.jpg)
 
 ---
 
 ## Mini Cart
 
-![This is a alt text.](/public/mini_cart.png)
+![This is a alt text.](/public/screenshort/mini_cart.jpg)
 
 ---
 
-## WishList Page
+## Toggle Menu
 
-![This is a alt text.](/public/WishList_page.png)
-
----
-
-## Cart Page
-
-![This is a alt text.](/public/cart_page.png)
+![This is a alt text.](/public/screenshort/toggle_menu.jpg)
 
 ---
 
-## Filter Page
+## Login
 
-![This is a alt text.](/public/filter.png)
-
----
-
-## Brand Page
-
-![This is a alt text.](/public/brand_page.png)
+![This is a alt text.](/public/screenshort/login.jpg)
 
 ---
 
-## Freatures Page
+## Register
 
-![This is a alt text.](/public/features_Page.png)
+![This is a alt text.](/public/screenshort/registration.jpg)
+
+---
+
+## Filter Grid Product
+
+![This is a alt text.](/public/screenshort/filter-grid-mode.jpg)
+
+---
+
+## Filter Single Product
+
+![This is a alt text.](/public/screenshort/filter-single-mode.jpg)
+
+---
+
+## Checkout
+
+![This is a alt text.](/public/screenshort/checkout.jpg)
+
+---
+
+## Payment Processing
+
+![This is a alt text.](public/screenshort/payment.jpg)
 
 ---
 

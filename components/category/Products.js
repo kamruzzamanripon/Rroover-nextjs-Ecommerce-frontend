@@ -24,7 +24,7 @@ const Products = ({displayStyle, filterPrice, orderingProduct}) => {
    
   useEffect(()=>{
     setProductArray(categoryProductPriceFilter || brandProductsPriceFilter)
-  },[categoryProduct, filterPrice])
+  },[categoryProduct, filterPrice, brandProductsPriceFilter, categoryProductPriceFilter])
 
   if(orderingProduct === 'desc'){
      productArray.sort((a, b) => a.actual_price > b.actual_price ? -1 : 1);

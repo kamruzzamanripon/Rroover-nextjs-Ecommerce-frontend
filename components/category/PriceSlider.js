@@ -9,7 +9,7 @@ const PriceSlider = ({setFilterPrice}) => {
 
   useEffect(()=>{
     setFilterPrice(sliderValue)
-  },[sliderValue])
+  },[sliderValue, setFilterPrice])
 
   //console.log("slider Value", sliderValue)
   return (

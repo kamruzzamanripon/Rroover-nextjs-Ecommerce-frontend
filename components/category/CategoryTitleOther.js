@@ -21,7 +21,7 @@ const CategoryTitleOther = ({setDisplayStyle, setOrderingProduct}) => {
     useEffect(()=>{
         setTitle(categoryName || brandName)
         setProductCount(categoryProductCount || brandProductCount)
-    },[categoryName])
+    },[categoryName, brandName, brandProductCount, categoryProductCount])
 
     return (
         <div className="my-8">
